@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class ClientModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'client';
+    protected $table            = 'aluno';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -17,7 +17,7 @@ class ClientModel extends Model
         'id',
         'name',
         'email',
-        'password',
+        'password'
     ];
 
     // Dates

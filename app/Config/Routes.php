@@ -42,6 +42,10 @@ $routes->get('/get','User::get');
 
 $routes->post('/createtime/(:any)','TimesAvailable::createTime/$1');
 
+//clientes
+
+$routes->post('/createClient','Client::createClient'); 
+
  
 /*
  * --------------------------------------------------------------------
