@@ -42,6 +42,28 @@ class TimesAvailable extends ResourceController
         return $this->failServerError("Horarios não encontrados!");
         
     }
+
+    public function deleteDate($id = null){
+
+        if($this->model->find($id)){
+    
+            $this->model->delete($id);
+             $response = [
+               'status'   => 200,
+               'error'    => null,
+               'messages' => [
+                   'success' => 'Dados deletados com sucesso!!'
+               ]
+               ];
+           
+           return$this->respondUpdated($response);
+       }
+       return $this->failNotFound('Nenhum dado encontrado com id '.$id);
+
+    }
+
+
+    
 }
 
 
