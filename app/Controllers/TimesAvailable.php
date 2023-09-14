@@ -58,8 +58,28 @@ class TimesAvailable extends ResourceController
            
            return$this->respondUpdated($response);
        }
-       return $this->failNotFound('Nenhum dado encontrado com id '.$id);
+       return $this->failNotFound('Nenhum horarios'.$id);
 
+    }
+    public function updateDate($id = null){
+
+        $data = $this->request->getJSON();
+
+        if($this->model->find($id)){
+    
+            $this->model->update($id,$data);
+             $response = [
+               'status'   => 200,
+               'error'    => null,
+               'messages' => [
+                   'success' => 'Horarios Atualizados com sucesso!!'
+               ]
+               ];
+           
+           return$this->respondUpdated($response);
+       }
+       return $this->failNotFound('horario alterados com sucesso! '.$id); 
+        
     }
 
 

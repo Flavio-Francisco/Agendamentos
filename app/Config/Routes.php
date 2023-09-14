@@ -43,6 +43,7 @@ $routes->get('/get','User::get');
 $routes->post('/createtime/(:any)','TimesAvailable::createTime/$1');
 $routes->get('/getDate/(:any)','TimesAvailable::getDate/$1');
 $routes->delete('/deleteDate/(:any)','TimesAvailable::deleteDate/$1');
+$routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1');
 
 //login
 $routes->post('/login', 'Login::authJwt');
