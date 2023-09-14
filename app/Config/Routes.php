@@ -33,18 +33,18 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
               
-$routes->post('/create','User::create'/*,['filter' => jwt]*/); 
-$routes->patch('/update/(:any)','User::updateUser/$1');
-$routes->delete('/delete/(:any)','User::delete/$1');
-$routes->get('/get','User::get'); 
-$routes->get('/uniqueUser/(:any)','User::uniqueUser/$1');
+$routes->post('/create','User::create',['filter' => 'jwt']); 
+$routes->patch('/update/(:any)','User::updateUser/$1',['filter' => 'jwt']);
+$routes->delete('/delete/(:any)','User::delete/$1',['filter' => 'jwt']);
+$routes->get('/get','User::get',['filter' => 'jwt']); 
+$routes->get('/uniqueUser/(:any)','User::uniqueUser/$1',['filter' => 'jwt']);
 
 //horarios disponiveis
 
-$routes->post('/createtime/(:any)','TimesAvailable::createTime/$1');
-$routes->get('/getDate/(:any)','TimesAvailable::getDate/$1');
-$routes->delete('/deleteDate/(:any)','TimesAvailable::deleteDate/$1');
-$routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1');
+$routes->post('/createtime/(:any)','TimesAvailable::createTime/$1',['filter' => 'jwt']);
+$routes->get('/getDate/(:any)','TimesAvailable::getDate/$1',['filter' => 'jwt']);
+$routes->delete('/deleteDate/(:any)','TimesAvailable::deleteDate/$1',['filter' => 'jwt']);
+$routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1',['filter' => 'jwt']);
 
 //login
 
@@ -52,12 +52,12 @@ $routes->post('/login', 'Login::authJwt');
 
 //clientes
 
-$routes->post('/createClient','Client::createClient'); 
-$routes->get('/getClient','Client::getClient');
-$routes->get('/uniqueClient/(:any)','Client::uniqueClient/$1');
-$routes->delete('/deleteClient/(:any)','Client::deleteClient/$1');
-$routes->patch('/agenda/(:any)','Client::agenda/$1');
-$routes->get('/getDateClient/(:any)','Client::getDateClient/$1');
+$routes->post('/createClient','Client::createClient',['filter' => 'jwt']); 
+$routes->get('/getClient','Client::getClient',['filter' => 'jwt']);
+$routes->get('/uniqueClient/(:any)','Client::uniqueClient/$1',['filter' => 'jwt']);
+$routes->delete('/deleteClient/(:any)','Client::deleteClient/$1',['filter' => 'jwt']);
+$routes->patch('/agenda/(:any)','Client::agenda/$1',['filter' => 'jwt']);
+$routes->get('/getDateClient/(:any)','Client::getDateClient/$1',['filter' => 'jwt']);
  
 /*
  * --------------------------------------------------------------------
