@@ -33,7 +33,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
               
-$routes->post('/create','User::create'); 
+$routes->post('/create','User::create'/*,['filter' => JWTAuthMiddleware::class]*/); 
 $routes->patch('/update/(:any)','User::updateUser/$1');
 $routes->delete('/delete/(:any)','User::delete/$1');
 $routes->get('/get','User::get'); 
