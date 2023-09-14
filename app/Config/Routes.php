@@ -37,6 +37,7 @@ $routes->post('/create','User::create');
 $routes->patch('/update/(:any)','User::updateUser/$1');
 $routes->delete('/delete/(:any)','User::delete/$1');
 $routes->get('/get','User::get'); 
+$routes->get('/uniqueUser/(:any)','User::uniqueUser/$1');
 
 //horarios disponiveis
 
@@ -46,14 +47,18 @@ $routes->delete('/deleteDate/(:any)','TimesAvailable::deleteDate/$1');
 $routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1');
 
 //login
+
 $routes->post('/login', 'Login::authJwt');
-
-
 
 //clientes
 
 $routes->post('/createClient','Client::createClient'); 
-
+$routes->get('/getClient','Client::getClient');
+$routes->get('/uniqueClient/(:any)','Client::uniqueClient/$1');
+$routes->delete('/deleteClient/(:any)','Client::deleteClient/$1');
+$routes->patch('/agenda/(:any)','Client::agenda/$1');
+//falta testar
+$routes->get('/getDateClient/(:any)','Client::getDateClient/$1');
  
 /*
  * --------------------------------------------------------------------

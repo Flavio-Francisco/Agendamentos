@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 
 use App\Models\ClientModel;
+use App\Models\ScheduledTimesAvailable;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -12,8 +13,9 @@ class Client extends ResourceController
     use ResponseTrait;
 
     protected $model;
+    protected $dataModel ;
     public function __construct(){
-
+        $this->dataModel = new ScheduledTimesAvailable();
         $this->model = new ClientModel(); 
 
     }
@@ -30,12 +32,20 @@ class Client extends ResourceController
 
     }
 
-    public function geClient(){
+    public function getClient(){
         $data = $this->model->findAll();
 
         return $this->respond($data);
     }
 
+    public function uniqueClient($id = null){
+        $data = $this->model->where(['id'=> $id])->find();
+        if ($data ) {
+            return $this->respond($data);
+        }
+       
+        return $this->failNotFound('Nenhum dado encontrado com id '.$id); 
+    }
 
     public function updateClient($id = null){
 
@@ -75,5 +85,26 @@ class Client extends ResourceController
        }
        return $this->failNotFound('Nenhum dado encontrado com id '.$id);
 
+    }
+    //falta testa
+    public function getDateClient($client_id = null){
+
+        $data = $this->dataModel->where(['client_id'=>$client_id])->findAll();
+
+        if ($data) {
+           return $this->respond($data);
+        }
+        return $this->failServerError("Horarios não encontrados!");
+        
+    }
+
+    public function agenda($id =null){
+        $data = $this->request->getJSON();
+        if ($this->dataModel->where(['id'=>$id])->find()) {
+            
+            $this->dataModel->update($id,$data);
+            return $this->respond($data);
+        }
+        return $this->failServerError("Horarios não encontrados!");
     }
 }

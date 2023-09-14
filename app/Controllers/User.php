@@ -34,7 +34,14 @@ class User extends ResourceController
 
         return $this->respond($data);
     }
-
+    public function uniqueUser($id = null){
+        $data = $this->model->where(['id'=> $id])->find();
+        if ($data ) {
+            return $this->respond($data);
+        }
+       
+        return $this->failNotFound('Nenhum dado encontrado com id '.$id); 
+    }
 
     public function updateUser($id = null){
 
