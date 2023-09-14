@@ -16,9 +16,21 @@ class ScheduledTimesAvailable extends Model
     protected $allowedFields    = [
         'id',
         'date',
-        'time',
-        'available'
+        'times',
+        'available',
+        'prof_id',
+        'client_id'
     ];
+     //relacionamento entre as tabelas
+     public function user()
+     {
+         return $this->belongsTo(UserModel::class, 'prof_id');
+     }
+     public function client()
+     {
+         return $this->belongsTo(UserModel::class, 'client_id');
+     }
+ 
 
     // Dates
     protected $useTimestamps = false;
@@ -26,6 +38,8 @@ class ScheduledTimesAvailable extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
+
+    
 
     // Validation
     protected $validationRules      = [];

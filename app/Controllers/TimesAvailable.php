@@ -24,6 +24,8 @@ class TimesAvailable extends ResourceController
        
         $data = $this->request->getJSON();
         
+        
+
         if ($this->userModel->find($id) ) {
 
             $this->model->save($data);

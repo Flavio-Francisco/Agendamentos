@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ScheduledTimesAvailable extends Model
+class ClientModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'scheduled_times_scheduled';
+    protected $table            = 'client';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -15,9 +15,9 @@ class ScheduledTimesAvailable extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id',
-        'date',
-        'time',
-        'available'
+        'name',
+        'email',
+        'password',
     ];
 
     // Dates
