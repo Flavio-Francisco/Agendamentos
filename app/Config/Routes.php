@@ -57,7 +57,6 @@ $routes->get('/getClient','Client::getClient');
 $routes->get('/uniqueClient/(:any)','Client::uniqueClient/$1');
 $routes->delete('/deleteClient/(:any)','Client::deleteClient/$1');
 $routes->patch('/agenda/(:any)','Client::agenda/$1');
-//falta testar
 $routes->get('/getDateClient/(:any)','Client::getDateClient/$1');
  
 /*

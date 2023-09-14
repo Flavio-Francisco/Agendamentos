@@ -24,7 +24,7 @@ class TimesAvailable extends ResourceController
        
         $data = $this->request->getJSON();
           
-        if ($this->userModel->find($id) ) {
+        if ($this->userModel->find($id) ){
 
             $this->model->save($data);
             return $this->respondCreated($data, 'horario salvo vom sucesee!');
@@ -82,8 +82,6 @@ class TimesAvailable extends ResourceController
         
     }
 
-
-    
 }
 
 
