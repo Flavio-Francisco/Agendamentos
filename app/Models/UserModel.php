@@ -20,7 +20,7 @@ class UserModel extends Model
         'password',
         'email',
         'adm',
-       ' teacher'
+        'teacher'
     ];
 
     // Dates
@@ -46,4 +46,20 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+	/**
+	 * @return mixed
+	 */
+	public function getAllowedFields() {
+		return $this->allowedFields;
+	}
+	
+	/**
+	 * @param mixed $allowedFields 
+	 * @return self
+	 */
+	public function setAllowedFields($allowedFields): self {
+		$this->allowedFields = $allowedFields;
+		return $this;
+	}
 }

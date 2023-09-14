@@ -2,30 +2,56 @@
 
 namespace App\Filters;
 
+use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class UserFilter implements FilterInterface
 {
-    /**
-     * Do whatever processing this filter needs to do.
-     * By default it should not return anything during
-     * normal execution. However, when an abnormal state
-     * is found, it should return an instance of
-     * CodeIgniter\HTTP\Response. If it does, script
-     * execution will end and that Response will be
-     * sent back to the client, allowing for error pages,
-     * redirects, etc.
-     *
-     * @param RequestInterface $request
-     * @param array|null       $arguments
-     *
-     * @return mixed
-     */
+
+    use ResponseTrait;
+
     public function before(RequestInterface $request, $arguments = null)
     {
-        //
+        $key = $_ENV['KEY'];
+
+        // Verifique se o token está presente no cabeçalho da solicitação
+        $token = $request->getServer('HTTP_AUTHORIZATION');
+
+        if (!$token) {
+            
+            $response = service('response');
+            $data = ['error' => 'Token não fornecido'];
+            return $response->setJSON($data)->setStatusCode(401);
+        }
+
+        try {
+            // Verifique o token JWT
+            $decoded = JWT::decode($token, new Key($key, 'HS256'));
+
+            // Mensagem de token Expirado
+        } catch ( ExpiredException $e) {
+            $response = service('response');
+            $data = ['error' => 'Token expirado'];
+            return $response->setJSON($data)->setStatusCode(401);
+
+            // Mensagem de token invalido
+        } catch (\Exception $e) {
+            $response = service('response');
+            $data = ['error' => 'Token inválido'];
+            return $response->setJSON($data)->setStatusCode(401);
+        }
+
+      $responseData = [
+            'token' => $token, // Adicione o token JWT à resposta
+            'user' => $decoded->data // Adicione os dados do usuário à resposta (supondo que estão em $decoded->data)
+        ];
+
+        return $this->respond($responseData);
     }
 
     /**

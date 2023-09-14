@@ -31,4 +31,17 @@ class TimesAvailable extends ResourceController
         }
 
     }
+
+    public function getDate($prof_id = null){
+
+        $data = $this->model->where(['prof_id'=>$prof_id , 'available' => true])->findAll();
+
+        if ($data) {
+           return $this->respond($data);
+        }
+        return $this->failServerError("Horarios não encontrados!");
+        
+    }
 }
+
+

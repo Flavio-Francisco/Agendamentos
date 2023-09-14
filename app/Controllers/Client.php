@@ -30,14 +30,14 @@ class Client extends ResourceController
 
     }
 
-    public function get(){
+    public function geClient(){
         $data = $this->model->findAll();
 
         return $this->respond($data);
     }
 
 
-    public function updateUser($id = null){
+    public function updateClient($id = null){
 
         $data = $this->request->getJSON();
 
@@ -58,7 +58,7 @@ class Client extends ResourceController
         
     }
 
-    public function delete($id = null){
+    public function deleteClient($id = null){
 
         if($this->model->find($id)){
     

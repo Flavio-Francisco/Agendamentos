@@ -41,6 +41,12 @@ $routes->get('/get','User::get');
 //horarios disponiveis
 
 $routes->post('/createtime/(:any)','TimesAvailable::createTime/$1');
+$routes->get('/getDate/(:any)','TimesAvailable::getDate/$1');
+
+//login
+$routes->post('/login', 'Login::authJwt');
+
+
 
 //clientes
 
