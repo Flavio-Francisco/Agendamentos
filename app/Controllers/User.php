@@ -82,4 +82,10 @@ class User extends ResourceController
        return $this->failNotFound('Nenhum dado encontrado com id '.$id);
 
     }
+    public function matte($id = null){
+
+        
+        $query = $this->model->where(['teacher'=>true, 'matte_id'=>$id])->findAll();
+        return $this->respond($query);
+    }
 }

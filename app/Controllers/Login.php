@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\UserModel;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
+
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
