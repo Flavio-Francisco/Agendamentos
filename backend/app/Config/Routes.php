@@ -48,7 +48,8 @@ $routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1',['filter' =>
 
 //login
 
-$routes->post('/login', 'Login::authJwt');
+$routes->post('/loginuser', 'Login::authJwtUser');
+$routes->post('/loginclient', 'Login::authJwtClient');
 
 //clientes
 

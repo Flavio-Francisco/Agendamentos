@@ -17,7 +17,8 @@ class ClientModel extends Model
         'id',
         'name',
         'email',
-        'password'
+        'password',
+        'saldo'
     ];
 
     // Dates

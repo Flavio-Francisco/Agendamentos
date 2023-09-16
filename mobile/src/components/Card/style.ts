@@ -2,11 +2,10 @@ import styled from "styled-components/native";
 import { Theme } from "../../../Thema";
 
 export const Conteiner = styled.View`
-  flex: 1;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 150px;
   width: 360px;
   margin-top: 20px;
   margin-left: 15px;
@@ -16,26 +15,26 @@ export const Conteiner = styled.View`
   border: 1px ${Theme.colors.greem};
 `;
 
-export const ConteinerTask = styled.TouchableOpacity`
+export const ConteinerSaldo = styled.View`
   flex-direction: row;
-  height: 100%;
-  width: 80%;
   align-items: center;
   justify-content: center;
- 
+  gap: 10px;
 `;
-
-
 
 export const TextCard = styled.Text`
   color: ${Theme.colors.greem};
-  font-size: 16px;
-  margin-left: 6px;
+  font-size: 20px;
+   margin-right: -10x;
 `;
-export const AvatarTeacher = styled.Image`
-  
-  margin-top: -60px;
-  height: 60px;
-  width: 60px;
-  border-radius: 50px;
+export const TextCard2 = styled.Text`
+  color: ${Theme.colors.greem};
+  font-size: 25px;
+  margin: 6px;
+  margin-right: -20x;
+`;
+export const TextOult = styled.View`
+ height: 25px;
+  background-color: ${Theme.colors.greem};
+  border-radius: 20px;
 `;

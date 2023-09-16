@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { ReactNode, SetStateAction, createContext, useState } from "react";
-import { api } from "../api/api";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -12,9 +11,7 @@ export interface AuthUserData {
     userName: string;
     email: string;
     password: string;
-    teacher: boolean;
-    adm: boolean;
-    star: number;
+    saldo:number;
   }
 
 }
@@ -83,9 +80,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         id: 0,
         password: '',
         userName: "",
-        teacher: user.user.teacher,
-        adm: user.user.adm,
-        star: user.user.star
+        saldo:0
       },
 
     });

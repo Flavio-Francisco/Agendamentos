@@ -46,8 +46,8 @@ export default function Login() {
         initialValues={FormValues}
 
         onSubmit={values => {
-          api.post('/login', {
-            userName: values.user,
+          api.post('/loginclient', {
+            name: values.user,
             password: values.password
           })
             .then(respose => {

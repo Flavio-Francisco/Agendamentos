@@ -1,30 +1,53 @@
 import { useState } from 'react';
-import {  AvatarTeacher, Conteiner,
-     ConteinerTask,
-  
-     TextCard,
-     } from "./style";
+import {
+    Conteiner,
+    ConteinerSaldo,
+    TextOult,
+    TextCard,
+    TextCard2,
+} from "./style";
 import { useNavigation } from '@react-navigation/native';
-    
-interface PropsList{
-    name:string;
-    avatar:string;
+import { Ionicons } from '@expo/vector-icons';
+import { Theme } from '../../../Thema';
+import { TouchableOpacity } from 'react-native';
+
+
+interface PropsList {
+    saldo: number;
+
 }
 
-export default function Card(props:PropsList){
+export default function Card(props: PropsList) {
     const navigation = useNavigation()
-    const [isChecked, setChecked] = useState(false);
-  
+    const [isChecked, setChecked] = useState(true);
 
-     
-    return(
+
+
+    return (
         <Conteiner>
-            <ConteinerTask >
-                <AvatarTeacher source={{uri:props.avatar}}/>
-                 <TextCard >{props.name}</TextCard>
-                
-            </ConteinerTask>
-            
+            <TextCard > Seu saldo é:</TextCard>
+            {isChecked ?
+                <ConteinerSaldo>
+                     
+                    <TextCard2 >R$ {props.saldo}</TextCard2>
+                    <TouchableOpacity onPress={() => setChecked(!isChecked)}>
+                        <Ionicons name="ios-eye-outline" size={30} color={Theme.colors.greem} />
+                    </TouchableOpacity>
+
+                </ConteinerSaldo>
+                :
+                <ConteinerSaldo>
+                     <TextCard2>R$</TextCard2>
+                    <TextOult>  
+                        <TextCard2 >{props.saldo}</TextCard2>
+                    </TextOult>
+                    <TouchableOpacity onPress={() => setChecked(!isChecked)}>
+                        <Ionicons name="ios-eye-off-outline" size={30} color={Theme.colors.greem} />
+                    </TouchableOpacity>
+                </ConteinerSaldo>
+
+            }
+
         </Conteiner>
     )
 }

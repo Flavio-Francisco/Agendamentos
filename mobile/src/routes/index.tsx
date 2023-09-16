@@ -1,19 +1,21 @@
 import { NavigationContainer } from "@react-navigation/native";
 import Stack from "./stack.routes";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Tab from "./tab.routes";
+import { AuthContext } from "../context/Auth";
 
 
 
 
 export default function Routes() {
-
-  const [user, setUser] = useState(false)
+  const { user} = useContext(AuthContext)
+  const [auth, setAuth] = useState(user)
+ 
   return (
 
     <NavigationContainer>
 
-      {user ? <Tab /> : <Stack />}
+      {auth? <Tab/> : <Stack />}
 
 
     </NavigationContainer>

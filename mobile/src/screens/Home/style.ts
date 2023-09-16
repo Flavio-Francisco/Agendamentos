@@ -11,7 +11,6 @@ export const Conteinertop = styled.View`
   height: 20%;
   justify-content: center;
   background-color: ${Theme.colors.greem};
-  
 `;
 
 export const ConteinerList = styled.View`
@@ -19,7 +18,6 @@ export const ConteinerList = styled.View`
   justify-content: center;
   text-align: center;
   width: 99%;
-
   background-color: ${Theme.colors.white100};
 `;
 export const ConteinerList2 = styled.View`
@@ -28,17 +26,16 @@ export const ConteinerList2 = styled.View`
   justify-content: center;
   margin-bottom: 10px;
   background-color: ${Theme.colors.white100};
-  gap:7px;
+  gap: 7px;
 `;
 
 export const HeaderHome = styled.View`
   height: 30%;
-  flex-direction: row;
-  align-items: center;
+
   width: 90%;
   margin-left: 10px;
   margin-bottom: 80px;
-  margin-top: 90px;
+
   background-color: ${Theme.colors.greem};
 `;
 export const TitleHome = styled.Text`
@@ -46,7 +43,6 @@ export const TitleHome = styled.Text`
   text-align: center;
   color: ${Theme.colors.white100};
   padding: 10px;
-  margin-left: 30px;
 `;
 export const AvatarUserHome = styled.Image`
   margin-left: 10px;
@@ -54,11 +50,32 @@ export const AvatarUserHome = styled.Image`
   width: 60px;
   border-radius: 50px;
 `;
-export const Curuja = styled.Image`
-  margin-right: 10px;
-  height: 60px;
-  width: 60px;
-  border-radius: 50px;
-  margin-left: 60px;
 
+export const Menu = styled.TouchableOpacity`
+  margin-top: 10px;
+  text-align: center;
+  margin-left: 0px;
+`;
+// bootomsheet
+
+export const Conteinerbootomsheet = styled.View`
+  justify-content: center;
+  background-color: ${Theme.colors.white100};
+`;
+export const SingnOut = styled.TouchableOpacity`
+  flex-direction: row;
+  height: 30px;
+  width: 65px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+  margin-top: 15px;
+  background-color: ${Theme.colors.greem};
+  gap: 4px;
+  border-radius: 7px;
+`;
+export const TextSingnOut = styled.Text`
+  font-size: 16px;
+  text-align: center;
+  color: ${Theme.colors.white100};
 `;
