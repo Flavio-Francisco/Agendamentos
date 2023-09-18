@@ -15,7 +15,7 @@ export default function Routes() {
 
     <NavigationContainer>
 
-      {auth? <Tab/> : <Stack />}
+      {auth.token === ''? <Tab/> : <Stack />}
 
 
     </NavigationContainer>

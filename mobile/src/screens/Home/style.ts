@@ -40,6 +40,7 @@ export const HeaderHome = styled.View`
 `;
 export const TitleHome = styled.Text`
   font-size: 25px;
+  height: 55px;
   text-align: center;
   color: ${Theme.colors.white100};
   padding: 10px;

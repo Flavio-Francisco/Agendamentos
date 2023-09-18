@@ -29,12 +29,11 @@ import { BottomSheetComponent } from "../../components/BottomSheetComponent";
 
 
 
+
+
 export default function Home() {
     const { user,singnOut } = useContext(AuthContext)
     const [modalVisible, setModalVisible] = useState(false)
-
-    const text = ' " Agradeço aos vários professores da minha vida. queles aos que, quando olhei, já estavam em outro caminho.Agradeço a todos que um dia me falaram NÃO... foi assim que encontrei o meu destino! "\nDaniel Devitto Zákia';
-
 
     const { navigate } = useNavigation();
 
@@ -50,6 +49,10 @@ export default function Home() {
         setModalVisible(!modalVisible)
         navigate('Login') 
     }
+    const currencyValue = user.user?.saldo;
+
+
+
     return (
         <Conteiner>
 
@@ -63,7 +66,7 @@ export default function Home() {
 
             </Conteinertop>
             <ConteinerList>
-                <Card saldo={user.user?.saldo} />
+                <Card saldo={ user.user?.saldo} />
             </ConteinerList>
             <ConteinerList2>
 

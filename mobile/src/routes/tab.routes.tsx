@@ -23,60 +23,7 @@ const { Navigator, Screen } = createStackNavigator();
 export default function Tab() {
     return (
         <Navigator>
-            <Screen
-                name='Home'
-                component={Home}
-                options={{
-
-                    headerShown: false
-                }}
-
-            />
-            <Screen
-                name='Schedule'
-                component={Schedule}
-                options={{
-
-                    headerShown: true,
-                    headerTitle: '',
-                    headerTintColor: Theme.colors.greem,
-
-                }}
-
-            />
-
-            <Screen
-                name='StarTeacher'
-                component={StarTeacher}
-                options={{
-
-                    headerShown: false
-                }}
-
-            />
-            <Screen
-                name='StarRating'
-                component={StarRating}
-                options={{
-
-                    headerShown: true,
-                    headerTitle: '',
-                    headerTintColor: Theme.colors.greem,
-
-                }}
-
-            />
-
-            <Screen
-                name='Options'
-                component={Options}
-                options={{
-
-                    headerShown: false
-                }}
-
-            />
-            <Screen
+              <Screen
                 name='Login'
                 component={Login}
                 options={{
@@ -86,32 +33,17 @@ export default function Tab() {
 
             />
 
-
             <Screen
-                name='PerfilTeacher'
-                component={PerfilTeacher}
+                name='Register'
+                component={Register}
                 options={{
 
-                    headerShown: true,
-                    headerTitle: '',
-                    headerTintColor: Theme.colors.greem,
-
-                }}
-
-
-            />
-            <Screen
-                name='Agenda'
-                component={Agenda}
-                options={{
-
-                    headerShown: true,
-                    headerTitle: '',
-                    headerTintColor: Theme.colors.greem,
-
+                    headerShown: false
                 }}
 
             />
+         
+
 
         </Navigator>
     )

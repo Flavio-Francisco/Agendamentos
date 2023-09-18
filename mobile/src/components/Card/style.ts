@@ -25,16 +25,24 @@ export const ConteinerSaldo = styled.View`
 export const TextCard = styled.Text`
   color: ${Theme.colors.greem};
   font-size: 20px;
-   margin-right: -10x;
+  margin-right: -10x;
 `;
 export const TextCard2 = styled.Text`
   color: ${Theme.colors.greem};
   font-size: 25px;
   margin: 6px;
   margin-right: -20x;
+  font-weight:bold;
 `;
 export const TextOult = styled.View`
- height: 25px;
+  height: 25px;
   background-color: ${Theme.colors.greem};
   border-radius: 20px;
+`;
+export const TextCardTitle = styled.Text`
+  color: ${Theme.colors.greem};
+  font-size: 15px;
+  margin: 6px;
+  margin-right: -20x;
+  font-weight:bold;
 `;

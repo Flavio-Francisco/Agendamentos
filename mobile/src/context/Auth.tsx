@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { ReactNode, SetStateAction, createContext, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Float } from "react-native/Libraries/Types/CodegenTypes";
 
 
 export interface AuthUserData {

@@ -5,6 +5,7 @@ import {
     TextOult,
     TextCard,
     TextCard2,
+    TextCardTitle,
 } from "./style";
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,16 +21,24 @@ interface PropsList {
 export default function Card(props: PropsList) {
     const navigation = useNavigation()
     const [isChecked, setChecked] = useState(true);
-
+   
+        // Formate o valor da moeda usando Intl.NumberFormat
+        const formattedValue = new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: "BRL", // Você pode definir o código da moeda aqui (ex: 'USD', 'EUR')
+        }).
+        
+      format(props.saldo);
 
 
     return (
         <Conteiner>
-            <TextCard > Seu saldo é:</TextCard>
+            <TextCardTitle>Saldo para agendamento</TextCardTitle>
+            <TextCard > Saldo atual</TextCard>
             {isChecked ?
                 <ConteinerSaldo>
                      
-                    <TextCard2 >R$ {props.saldo}</TextCard2>
+                    <TextCard2 >{formattedValue }</TextCard2>
                     <TouchableOpacity onPress={() => setChecked(!isChecked)}>
                         <Ionicons name="ios-eye-outline" size={30} color={Theme.colors.greem} />
                     </TouchableOpacity>
@@ -39,7 +48,7 @@ export default function Card(props: PropsList) {
                 <ConteinerSaldo>
                      <TextCard2>R$</TextCard2>
                     <TextOult>  
-                        <TextCard2 >{props.saldo}</TextCard2>
+                        <TextCard2 >{formattedValue }</TextCard2>
                     </TextOult>
                     <TouchableOpacity onPress={() => setChecked(!isChecked)}>
                         <Ionicons name="ios-eye-off-outline" size={30} color={Theme.colors.greem} />

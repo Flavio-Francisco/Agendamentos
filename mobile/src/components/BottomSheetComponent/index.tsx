@@ -48,7 +48,7 @@ export const BottomSheetComponent = ({
         handleComponent={() => null}
         animateOnMount
         index={0}
-        snapPoints={isOpenKeyboard ? ['85%'] : snapPoints}
+        snapPoints={isOpenKeyboard ? ['100%'] : snapPoints}
         {...rest}>
         <Button onPress={toggle}>
           <Icon name="x"  />
