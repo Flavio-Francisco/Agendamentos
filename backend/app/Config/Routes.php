@@ -62,6 +62,11 @@ $routes->get('/getDateClient/(:any)','Client::getDateClient/$1',['filter' => 'jw
 
 //materia
 $routes->get('/matte/(:any)','User::matte/$1'); 
+
+// datas recoretes
+$routes->post('/date', 'DateController::repeatDates');
+$routes->post('/datey/(:any)', 'DateController::repeatWeeklyUntilEndOfYear/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
