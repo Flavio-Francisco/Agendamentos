@@ -66,7 +66,7 @@ $routes->get('/matte/(:any)','User::matte/$1');
 // datas recoretes
 
 $routes->post('/date', 'DateController::repeatDates');
-$routes->post('/datey/(:any)', 'DateController::repeatWeeklyUntilEndOfYear/$1');
+$routes->post('/datey', 'DateController::repeatWeeklyUntilEndOfYear');
 $routes->get('/rest', 'DateController::rest');
 /*
  * --------------------------------------------------------------------

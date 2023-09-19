@@ -29,8 +29,17 @@ class DateController extends ResourceController
 
     public function repeatDates()
     {
-        $data = $this->request->getJSON();
-        $initialDate = new DateTime($data->date);
+        
+       
+        $data = $this->model->select('date')->where('repeat',true)->get();
+
+        session()->set(['date'=>  $data ]);
+
+       if (session()->has('date')) {
+       var_dump(session()->get('date'));
+       die();
+       }
+        $initialDate = $data;
       
         $today = new DateTime();
            // Calcula a data por tempo variavél 
@@ -48,22 +57,24 @@ class DateController extends ResourceController
 
         return $this->respond($initialDate->format('d-m-Y'));
     }
-
+  
        
     
-public function repeatWeeklyUntilEndOfYear($prof_id = null)
+public function rest()
 {
-   
-    $data = $this->request->getJSON();
-    $initialDate = new DateTime($data->date);
+    //pegando a data no banco de dados
+    $data = $this->model->select('date')->where('repeat', true)->find();
+    $dateValue = $data[0]['date'];
 
+    //conveterndo para o formato de hora e data
+    $initialDate = new DateTime( $dateValue);
    
     $endOfYear = new DateTime(date('Y-12-31')); // Último dia do ano atual
 
     $dates = [];
 
     // Adiciona 7 dias à data inicial até que a data seja posterior ao último dia do ano
-    while ($initialDate <= $endOfYear) {
+    while ( $initialDate  <= $endOfYear) {
         // Pula os finais de semana (sábado e domingo)
         while ($this->isWeekend($initialDate)) {
             $initialDate->modify('+1 day');
@@ -72,62 +83,26 @@ public function repeatWeeklyUntilEndOfYear($prof_id = null)
         $dates[] = $initialDate->format('d-m-Y');
         $initialDate->modify('+7 days');
     }
-    return $this->respond($dates);
+        $date = new DateTime();
+        $date->format('d-m-Y');
+
+
+    for($i = 0 ;$i < count($dates) ;$i++){
+        
+        var_dump($dates[$i]);
+        if($date == $dates[$i]){
+            
+            return $dates[$i];
+        }
+    }
+    //return $this->respond($dates);
  }
 
 
 
  
- public function rest(){
-         
-    $session = session();
+}
+
+
     
-            
-    
-    // Verifique se a data inicial já está armazenada na sessão
-            if (!$session->has('data_inicial')) {
-                // Se não estiver armazenada, obtenha a data inicial do banco de dados
-                
-                
-    $data_inicial = $this->obterDataInicialDoBancoDeDados(); // Substitua pela sua lógica
-                
-                              
-    $session->set('data_inicial', $data_inicial);
-            } 
-           
-    else {
-                // Se a data inicial estiver armazenada, calcule a próxima data para exibição
-                
-               
-    $data_inicial = new DateTime($session->get('data_inicial'));
-                
-                
-    $data_inicial->modify('+7 days'); // Adicione 7 dias para a próxima semana
-                $session->set('data_inicial', $data_inicial->format('Y-m-d'));
-            }
-           
-    // Exiba a data para o usuário
-            
-            
-    $dataParaExibir = $session->get('data_inicial');
-    
-            
-    
-    // Faça algo com $dataParaExibir, como passá-lo para a view ou retorná-lo como resposta JSON
-            return $this->response->setJSON(['next_date' => $dataParaExibir]);
-        }
-    
-        
-        
-    
-       
-    // Função para obter a data inicial do banco de dados (substitua conforme necessário)
-        private function obterDataInicialDoBancoDeDados()
-        {
-            
-           
-    // Substitua isso com sua lógica para obter a data inicial do banco de dados
-            return '2023-01-01'; // Exemplo de data inicial
-        }
-    }
 

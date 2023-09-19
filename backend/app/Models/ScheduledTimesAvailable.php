@@ -17,7 +17,10 @@ class ScheduledTimesAvailable extends Model
         'id',
         'date',
         'times',
+        'start_time',
+        'end_time',
         'available',
+        'repeat',
         'prof_id',
         'client_id'
     ];
