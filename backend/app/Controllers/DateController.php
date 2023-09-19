@@ -27,37 +27,7 @@ class DateController extends ResourceController
     return $dayOfWeek === 6 || $dayOfWeek === 7;
     }
 
-    public function repeatDates()
-    {
-        
-       
-        $data = $this->model->select('date')->where('repeat',true)->get();
 
-        session()->set(['date'=>  $data ]);
-
-       if (session()->has('date')) {
-       var_dump(session()->get('date'));
-       die();
-       }
-        $initialDate = $data;
-      
-        $today = new DateTime();
-           // Calcula a data por tempo variavél 
-        $initialDate->modify('+' . $data->day . ' day');
-
-     if ($initialDate < $today) {
-            // Se for data retroativa, avança para a próxima semana
-            $initialDate->modify('next monday');
-        }
-      if ($this->isWeekend($initialDate)) {
-            // Se for um final de semana, avança para a próxima semana
-            $initialDate->modify('next monday');
-        }
-       
-
-        return $this->respond($initialDate->format('d-m-Y'));
-    }
-  
        
     
 public function rest()
