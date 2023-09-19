@@ -6,7 +6,7 @@ class Home extends BaseController
 {
     public function index(){
       if (session()->has('date')) {
-        var_dump(session()->get('date'));
+        echo(session()->get('date'));
         
       }
 
@@ -15,8 +15,8 @@ class Home extends BaseController
 
       //  criando sessao e redirecionando para index
         session()->set([
-        'date'=> 12/04/1983,
-        ,'available'=>true]);
+        'date'=> '12/04/1983',
+        'available'=>true]);
 
         return redirect()->route('index');
     }
