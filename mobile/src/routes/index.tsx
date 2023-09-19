@@ -9,13 +9,13 @@ import { AuthContext } from "../context/Auth";
 
 export default function Routes() {
   const { user} = useContext(AuthContext)
-  const [auth, setAuth] = useState(user)
+  
  
   return (
 
     <NavigationContainer>
 
-      {auth.token === ''? <Tab/> : <Stack />}
+      {user? <Stack/> : < Tab/>}
 
 
     </NavigationContainer>

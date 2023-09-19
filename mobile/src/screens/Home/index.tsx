@@ -32,7 +32,7 @@ import { BottomSheetComponent } from "../../components/BottomSheetComponent";
 
 
 export default function Home() {
-    const { user,singnOut } = useContext(AuthContext)
+    const { user, singnOut } = useContext(AuthContext)
     const [modalVisible, setModalVisible] = useState(false)
 
     const { navigate } = useNavigation();
@@ -44,10 +44,10 @@ export default function Home() {
         })
 
     }
-    function exist(){
+    function exist() {
         singnOut();
         setModalVisible(!modalVisible)
-        navigate('Login') 
+        navigate('Login')
     }
     const currencyValue = user.user?.saldo;
 
@@ -66,10 +66,10 @@ export default function Home() {
 
             </Conteinertop>
             <ConteinerList>
-                <Card saldo={ user.user?.saldo} />
+                <Card saldo={user.user?.saldo} />
             </ConteinerList>
             <ConteinerList2>
-
+                
                 <Card2 name={"Minhas Aulas"} navigate={() => navigate('Schedule')} />
                 <Card4 name={"Agendar aulas"} navigate={handleNavigate} />
 
@@ -82,7 +82,7 @@ export default function Home() {
                 snapPoints={['90%']}
             >
                 <Conteinerbootomsheet>
-                    <SingnOut onPress={()=>exist()}>
+                    <SingnOut onPress={() => exist()}>
                         <MaterialIcons name="exit-to-app" size={20} color={Theme.colors.white100} />
                         <TextSingnOut>Sair</TextSingnOut>
                     </SingnOut>

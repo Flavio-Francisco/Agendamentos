@@ -7,9 +7,6 @@ export const Conteiner = styled.View`
   align-items: center;
   height: 150px;
   width: 360px;
-  margin-top: 20px;
-  margin-left: 15px;
-  text-align: center;
   background-color: ${Theme.colors.white100};
   border-radius: 20px;
   border: 1px ${Theme.colors.greem};
@@ -25,13 +22,13 @@ export const ConteinerSaldo = styled.View`
 export const TextCard = styled.Text`
   color: ${Theme.colors.greem};
   font-size: 20px;
-  margin-right: -10x;
+ 
 `;
 export const TextCard2 = styled.Text`
   color: ${Theme.colors.greem};
   font-size: 25px;
   margin: 6px;
-  margin-right: -20x;
+  
   font-weight:bold;
 `;
 export const TextOult = styled.View`
@@ -43,6 +40,5 @@ export const TextCardTitle = styled.Text`
   color: ${Theme.colors.greem};
   font-size: 15px;
   margin: 6px;
-  margin-right: -20x;
   font-weight:bold;
 `;

@@ -4,11 +4,13 @@ import { Theme } from "../../../Thema";
 export const Conteiner = styled.View`
   flex: 1;
   justify-content: center;
+  align-items:center;
   background-color: ${Theme.colors.white100};
 `;
 
 export const Conteinertop = styled.View`
-  height: 20%;
+  height: 21%;
+  width: 100%;
   justify-content: center;
   background-color: ${Theme.colors.greem};
 `;
@@ -16,8 +18,9 @@ export const Conteinertop = styled.View`
 export const ConteinerList = styled.View`
   height: 25%;
   justify-content: center;
-  text-align: center;
+  align-items:center;
   width: 99%;
+  margin-bottom: -10px;
   background-color: ${Theme.colors.white100};
 `;
 export const ConteinerList2 = styled.View`
@@ -25,13 +28,13 @@ export const ConteinerList2 = styled.View`
   height: 25%;
   justify-content: center;
   margin-bottom: 10px;
+  margin-top: 0px;
   background-color: ${Theme.colors.white100};
-  gap: 7px;
+  gap: 17px;
 `;
 
 export const HeaderHome = styled.View`
   height: 30%;
-
   width: 90%;
   margin-left: 10px;
   margin-bottom: 80px;
