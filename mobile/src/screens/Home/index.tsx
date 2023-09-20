@@ -8,7 +8,8 @@ import {
     Menu,
     Conteinerbootomsheet,
     SingnOut,
-    TextSingnOut
+    TextSingnOut,
+    ConteinerList3
 } from "./style";
 
 ;
@@ -69,13 +70,16 @@ export default function Home() {
                 <Card saldo={user.user?.saldo} />
             </ConteinerList>
             <ConteinerList2>
-                
+
                 <Card2 name={"Minhas Aulas"} navigate={() => navigate('Schedule')} />
                 <Card4 name={"Agendar aulas"} navigate={handleNavigate} />
 
             </ConteinerList2>
+            <ConteinerList3>
+                <Card3 name={"Informaçao de pagamento"} />
+            </ConteinerList3>
 
-            <Card3 name={"Informaçao de pagamento"} />
+
             <BottomSheetComponent
                 isOpen={modalVisible}
                 toggle={() => setModalVisible(false)}

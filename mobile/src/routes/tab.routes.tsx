@@ -27,7 +27,7 @@ export default function Tab() {
                 name='Login'
                 component={Login}
                 options={{
-
+                    
                     headerShown: false
                 }}
 

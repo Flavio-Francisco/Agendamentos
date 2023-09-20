@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { Theme } from "./../../../Thema";
 
 export const Conteiner = styled.View`
-  flex: 1;
+ 
   justify-content: center;
   align-items: center;
   background-color: ${Theme.colors.white100};

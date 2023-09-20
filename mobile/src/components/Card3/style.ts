@@ -5,14 +5,12 @@ export const Conteiner = styled.View`
   
   justify-content: center;
   align-items: center;
-  height: 20%;
-  width: 90%;
-  margin-top: -10px;
-  margin-bottom: 20px;
+  height: 150px;
+  width: 360px;
   background-color: ${Theme.colors.white100};
   border-radius: 20px;
   border: 1px ${Theme.colors.greem};
-  margin-left: 18px;
+
  
 `;
 

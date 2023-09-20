@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class Matter extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'user';
+    protected $table            = 'materia';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -15,13 +15,7 @@ class UserModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id',
-        'name',
-        'userName',
-        'password',
-        'email',
-        'adm',
-        'teacher',
-        'matte_id'
+        'name'
     ];
 
     // Dates
@@ -47,20 +41,4 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-	/**
-	 * @return mixed
-	 */
-	public function getAllowedFields() {
-		return $this->allowedFields;
-	}
-	
-	/**
-	 * @param mixed $allowedFields 
-	 * @return self
-	 */
-	public function setAllowedFields($allowedFields): self {
-		$this->allowedFields = $allowedFields;
-		return $this;
-	}
 }

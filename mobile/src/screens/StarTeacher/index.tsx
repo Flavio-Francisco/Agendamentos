@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 
 import { Conteiner, ConteinerInput, ViewTeacher, Input } from './styles';
 import { FlatList } from 'react-native';
 import CardTeacher from '../../components/CardTeacher';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContextTeacher } from '../../context/Teacher';
 
 
 export interface Teacher {
@@ -21,8 +22,13 @@ export interface Teacher {
 export default function StarTeacher() {
 
     const navigation = useNavigation();
+    const { filterTeacher, getMatter } = useContext(AuthContextTeacher)
 
-
+    useEffect(()=>{
+        getMatter('1')
+        console.log(filterTeacher);
+        
+    },[])
 
     const Professor: Teacher[] = [
 

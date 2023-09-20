@@ -27,12 +27,18 @@ export const ConteinerList2 = styled.View`
   flex-direction: row;
   height: 25%;
   justify-content: center;
-  margin-bottom: 10px;
   margin-top: 0px;
   background-color: ${Theme.colors.white100};
   gap: 17px;
 `;
 
+export const ConteinerList3 = styled.View`
+  height: 25%;
+  justify-content: center;
+  margin-top: 0px;
+  background-color: ${Theme.colors.white100};
+ 
+`;
 export const HeaderHome = styled.View`
   height: 30%;
   width: 90%;

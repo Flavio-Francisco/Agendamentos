@@ -5,6 +5,10 @@ import { Modal, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Theme } from '../../../Thema';
 import { Teacher } from '../StarTeacher';
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/Auth";
+import { api } from "../../api/api";
+import { AuthContextTeacher } from "../../context/Teacher";
 
 
 
@@ -14,19 +18,32 @@ import { Teacher } from '../StarTeacher';
 export default function Options() {
 
 
+  const { user } = useContext(AuthContext)
+  const { filterTeacher, getMatter } = useContext(AuthContextTeacher)
 
   const { navigate } = useNavigation()
 
+  function handleNavigate(id :string) {
+    navigate('StarTeacher', {
+      avatar: '', 
+      name: '',
+       rating: 0, 
+       id: id, 
+       modal: true
+    })
+  }
 
+  useEffect(()=>{
+    getMatter('1')
+    console.log(filterTeacher);
+    
+},[])
 
   return (
     <ContaineModal>
 
       <Header>
-        <AvatarUser
-          source={{ uri: 'https://avatars.githubusercontent.com/u/111377254?v=4' }}
-        />
-        <Title> Olá, Flávio</Title>
+        <Title> Olá, {user.user.name}</Title>
       </Header>
 
       <Container>
@@ -37,13 +54,11 @@ export default function Options() {
         <View>
           <ButtomIcon
             style={{ backgroundColor: Theme.colors.white100 }}
-            onPress={() => navigate('StarTeacher', {
-              avatar: '',
-              modal: true,
-              id: '',
-              name: '',
-              rating: 0
-            })}
+            onPress={() => {
+              handleNavigate('1')
+              
+              console.log(filterTeacher)
+            }}
           >
             <Icon source={require('../../../assets/portugues2.png')} />
           </ButtomIcon>
@@ -53,6 +68,10 @@ export default function Options() {
         <View>
           <ButtomIcon
             style={{ backgroundColor: Theme.colors.white100 }}
+            onPress={() => {
+              handleNavigate('2')
+              console.log(filterTeacher)
+            }}
           ><Icon source={require('../../../assets/quimica.png')} />
           </ButtomIcon>
           <TextIcon>Quimica</TextIcon>
