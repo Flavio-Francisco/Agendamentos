@@ -63,15 +63,11 @@ export default function StarTeacher() {
 
 
 
-
-
     useEffect(() => {
         handleTeacher
         console.log(handleTeacher);
 
         console.log("o id é :  " + teacher.id);
-
-
     }, [])
 
 
