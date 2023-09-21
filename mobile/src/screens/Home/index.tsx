@@ -22,10 +22,11 @@ import Card3 from './../../components/Card3/Card';
 import Card4 from "../../components/Card4/Card4";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Theme } from "../../../Thema";
 import { AuthContext } from "../../context/Auth";
 import { BottomSheetComponent } from "../../components/BottomSheetComponent";
+import { AuthContextTeacher } from "../../context/Teacher";
 
 
 
@@ -33,6 +34,8 @@ import { BottomSheetComponent } from "../../components/BottomSheetComponent";
 
 
 export default function Home() {
+
+    const { filterTeacher, matterfindAll } = useContext(AuthContextTeacher)
     const { user, singnOut } = useContext(AuthContext)
     const [modalVisible, setModalVisible] = useState(false)
 
@@ -52,6 +55,11 @@ export default function Home() {
     }
     const currencyValue = user.user?.saldo;
 
+    useEffect(() => {
+        matterfindAll()
+        console.log(filterTeacher);
+
+    }, [])
 
 
     return (

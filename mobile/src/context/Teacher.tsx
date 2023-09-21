@@ -9,7 +9,7 @@ import { api } from "../api/api";
 export interface AuthTeacherData {
 
 
-  id: number;
+  id: string;
   name: string;
   userName: string;
   email: string;
@@ -26,9 +26,16 @@ export interface AuthContextDataProps {
   teacher: AuthTeacherData;
   getTeacher: (teacher: AuthTeacherData) => void;
   filterTeacher: AuthTeacherData[];
-  getMatter: (id: string) => void;
+  matterfindAll: () => void;
+  portuguese: AuthTeacherData[];
+  mathematics: AuthTeacherData[];
+  chemical: AuthTeacherData[];
+  physical: AuthTeacherData[];
+  biology: AuthTeacherData[];
+  geography: AuthTeacherData[];
+  english: AuthTeacherData[];
+  history: AuthTeacherData[];
 }
-
 interface AuthContextProviderProps {
   children: ReactNode;
 
@@ -42,14 +49,103 @@ export function AuthContextProviderTeacher({ children }: AuthContextProviderProp
   const [teacher, setTeacher] = useState<AuthTeacherData>({} as AuthTeacherData);
   const [filterTeacher, setFilterTeacher] = useState<AuthTeacherData[]>([]);
 
+  const [portuguese, setPortuguese] = useState<AuthTeacherData[]>([]);
+  const [mathematics, setMathematics] = useState<AuthTeacherData[]>([]);
+  const [chemical, setCyhemical] = useState<AuthTeacherData[]>([]);
+  const [physical, setPhysical] = useState<AuthTeacherData[]>([]);
+  const [biology, setBiology] = useState<AuthTeacherData[]>([]);
+  const [geography, setGeography] = useState<AuthTeacherData[]>([]);
+  const [english, setEnglish] = useState<AuthTeacherData[]>([]);
+  const [history, setHistory] = useState<AuthTeacherData[]>([]);
 
 
 
-  const  getMatter = useCallback(async (id: string) => {
-    await api.get(`matte/${id}`)
+
+
+
+  const matterfindAll = useCallback(async () => {
+    await api.get(`matte/1`)
       .then(response => {
 
-        setFilterTeacher(response.data);
+        setPortuguese(response.data);
+        console.log("portugues");
+
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+    await api.get(`matte/2`)
+      .then(response => {
+
+        setCyhemical(response.data);
+        console.log("quimica");
+
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+    await api.get(`matte/3`)
+      .then(response => {
+
+        setPhysical(response.data);
+        console.log("fisica");
+
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+    await api.get(`matte/4`)
+      .then(response => {
+
+        setBiology(response.data);
+        console.log("biologia");
+
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+    await api.get(`matte/5`)
+      .then(response => {
+
+        setMathematics(response.data);
+        console.log("matematica");
+
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+    await api.get(`matte/6`)
+      .then(response => {
+
+        setGeography(response.data);
+        console.log("geografia");
+
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+    await api.get(`matte/7`)
+      .then(response => {
+
+        setEnglish(response.data);
+        console.log("ingles");
+
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+    await api.get(`matte/8`)
+      .then(response => {
+
+        setHistory(response.data);
+        console.log("historia");
 
       })
       .catch(erro => {
@@ -57,7 +153,10 @@ export function AuthContextProviderTeacher({ children }: AuthContextProviderProp
 
       })
 
-  }, [filterTeacher])
+
+  }, [])
+
+
 
   function getTeacher(teacher: AuthTeacherData) {
     setTeacher(teacher)
@@ -69,10 +168,18 @@ export function AuthContextProviderTeacher({ children }: AuthContextProviderProp
   return (
     <AuthContextTeacher.Provider
       value={{
-        getTeacher,
+        biology,
+        chemical,
+        english,
+        geography,
+        history,
+        mathematics,
+        physical,
+        portuguese,
         teacher,
         filterTeacher,
-        getMatter
+        matterfindAll,
+        getTeacher,
 
       }}
     >

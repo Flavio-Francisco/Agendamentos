@@ -4,7 +4,7 @@ import { ButtomIcon, Icon, TextIcon, HorizontalLine, Container, Title, Container
 import { Modal, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Theme } from '../../../Thema';
-import { Teacher } from '../StarTeacher';
+
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/Auth";
 import { api } from "../../api/api";
@@ -19,25 +19,20 @@ export default function Options() {
 
 
   const { user } = useContext(AuthContext)
-  const { filterTeacher, getMatter } = useContext(AuthContextTeacher)
+  const { filterTeacher, matterfindAll } = useContext(AuthContextTeacher)
 
   const { navigate } = useNavigation()
 
-  function handleNavigate(id :string) {
+  function handleNavigate(id: string) {
     navigate('StarTeacher', {
-      avatar: '', 
+      avatar: '',
       name: '',
-       rating: 0, 
-       id: id, 
-       modal: true
+      rating: 0,
+      id: id,
+      modal: true
     })
   }
 
-  useEffect(()=>{
-    getMatter('1')
-    console.log(filterTeacher);
-    
-},[])
 
   return (
     <ContaineModal>
@@ -56,8 +51,7 @@ export default function Options() {
             style={{ backgroundColor: Theme.colors.white100 }}
             onPress={() => {
               handleNavigate('1')
-              
-              console.log(filterTeacher)
+
             }}
           >
             <Icon source={require('../../../assets/portugues2.png')} />
@@ -70,7 +64,7 @@ export default function Options() {
             style={{ backgroundColor: Theme.colors.white100 }}
             onPress={() => {
               handleNavigate('2')
-              console.log(filterTeacher)
+
             }}
           ><Icon source={require('../../../assets/quimica.png')} />
           </ButtomIcon>
@@ -80,6 +74,10 @@ export default function Options() {
         <View>
           <ButtomIcon
             style={{ backgroundColor: Theme.colors.white100 }}
+            onPress={() => {
+              handleNavigate('3')
+
+            }}
           ><Icon source={require('../../../assets/fisica.png')} />
           </ButtomIcon>
           <TextIcon>Fisica</TextIcon>
@@ -88,6 +86,10 @@ export default function Options() {
         <View>
           <ButtomIcon
             style={{ backgroundColor: Theme.colors.white100 }}
+            onPress={() => {
+              handleNavigate('4')
+
+            }}
           ><Icon source={require('../../../assets/biologia.png')} />
           </ButtomIcon>
           <TextIcon>Biologia</TextIcon>
@@ -96,6 +98,10 @@ export default function Options() {
         <View>
           <ButtomIcon
             style={{ backgroundColor: Theme.colors.white100 }}
+            onPress={() => {
+              handleNavigate('5')
+
+            }}
           ><Icon source={require('../../../assets/matematica.png')} />
           </ButtomIcon>
           <TextIcon>Matematica</TextIcon>
@@ -104,6 +110,10 @@ export default function Options() {
         <View>
           <ButtomIcon
             style={{ backgroundColor: Theme.colors.white100 }}
+            onPress={() => {
+              handleNavigate('6')
+
+            }}
           ><Icon source={require('../../../assets/geografia.png')} />
           </ButtomIcon>
           <TextIcon>Geografia</TextIcon>
@@ -112,6 +122,10 @@ export default function Options() {
         <View>
           <ButtomIcon
             style={{ backgroundColor: Theme.colors.white100 }}
+            onPress={() => {
+              handleNavigate('7')
+
+            }}
           ><Icon source={require('../../../assets/ingles.png')} />
           </ButtomIcon>
           <TextIcon>Inglês</TextIcon>
@@ -120,6 +134,10 @@ export default function Options() {
         <View>
           <ButtomIcon
             style={{ backgroundColor: Theme.colors.white100 }}
+            onPress={() => {
+              handleNavigate('8')
+
+            }}
           ><Icon source={require('../../../assets/historia.png')} />
           </ButtomIcon>
           <TextIcon>História</TextIcon>

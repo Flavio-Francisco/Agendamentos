@@ -8,14 +8,14 @@ import { AuthContext } from "../context/Auth";
 
 
 export default function Routes() {
-  const { user} = useContext(AuthContext)
-  
- 
+  const { user } = useContext(AuthContext)
+
+
   return (
 
     <NavigationContainer>
 
-      {user? <Stack/> : < Tab/>}
+      {user ? <Stack /> : < Tab />}
 
 
     </NavigationContainer>

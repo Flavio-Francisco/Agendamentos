@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigation } from '@react-navigation/native';
 import { AvatarTeacher, Conteiner, ConteinerAvatar, Name, ConteinerStar } from "./styles";
 import StarFixer from "../StarFixer";
-import { Teacher } from "../../screens/StarTeacher";
+import { AuthTeacherData } from "../../context/Teacher";
 
 
 
@@ -10,7 +10,7 @@ import { Teacher } from "../../screens/StarTeacher";
 
 
 
-export default function CardTeacher(props: Teacher) {
+export default function CardTeacher(props: AuthTeacherData) {
   const [rating, setRating] = useState(0);
   const navigation = useNavigation();
 
@@ -18,9 +18,9 @@ export default function CardTeacher(props: Teacher) {
 
     await navigation.navigate('PerfilTeacher', {
       id: props.id,
-      avatar: props.avatar,
-      name: props.Name,
-      rating: props.rating,
+      avatar: '',
+      name: props.name,
+      rating: props.star,
       modal: true
     });
 
@@ -39,12 +39,12 @@ export default function CardTeacher(props: Teacher) {
     <>
       <Conteiner onPress={() => handleItemPress()}>
         <ConteinerAvatar>
-          <AvatarTeacher source={{ uri: props.avatar }} />
+          <AvatarTeacher source={require('../../../assets/person.png')} />
           <ConteinerStar >
-            <StarFixer maxStars={5} rating={props.rating} onRatingPress={handleRatingPress} />
+            <StarFixer maxStars={5} rating={props.star} onRatingPress={handleRatingPress} />
           </ConteinerStar>
         </ConteinerAvatar>
-        <Name>{props.Name}</Name>
+        <Name>{props.name}</Name>
       </Conteiner>
     </>
   )

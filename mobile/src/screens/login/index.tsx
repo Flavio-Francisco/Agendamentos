@@ -30,7 +30,7 @@ const validationSchema = Yup.object().shape({
 export default function Login() {
   const { navigate } = useNavigation();
   const { singnIn } = useContext(AuthContext)
-  const { getMatter } = useContext(AuthContextTeacher)
+  const { matterfindAll } = useContext(AuthContextTeacher)
 
   const FormValues: MyFormValues = { user: '', password: '' };
 
@@ -54,7 +54,7 @@ export default function Login() {
           })
             .then(respose => {
               singnIn(respose.data)
-              getMatter('1')
+              matterfindAll()
               navigate('Home')
               console.log(respose.data)
 
