@@ -1,5 +1,8 @@
 <?php
 
+//key do Mercado Pago
+defined('KEY_MP')||define('KEY_MP','TEST-4212915248988872-092510-a901b3ff7a4889dc8a25b561d87cc9d7-254304828'); 
+
 /*
  | --------------------------------------------------------------------
  | App Namespace
