@@ -68,6 +68,11 @@ $routes->get('/matte/(:any)','User::matte/$1');
 
 
 $routes->get('/rest', 'DateController::rest');
+
+// mercado pago
+
+$routes->post('payment/receive', 'PaymentController::receivePayment');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

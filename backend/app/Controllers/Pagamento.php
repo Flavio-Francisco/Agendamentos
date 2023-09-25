@@ -1,8 +1,6 @@
 <?php
 
-
-
-namespace App\Controllers\Api;
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
@@ -16,22 +14,24 @@ class Pagamento extends BaseController
     {
         $data= $this->request->getJSON();
    
-        MercadoPago\SDK::setAccessToken(KEY_MP); // Either Production or SandBox AccessToken
+       $sdk = new MercadoPago\SDK();
+       $sdk->setAccessToken(KEY_MP);
 
         $payment = new MercadoPago\Payment();
         
         $payment->transaction_amount = 141; // valor da transação
-        $payment->token = "YOUR_CARD_TOKEN";
-        $payment->description = "Ergonomic Silk Shirt";//produto no caso as horas aulas
+     //  $payment->token = "YOUR_CARD_TOKEN";
+        $payment->description = $data->description;//produto no caso as horas aulas
       //$payment->installments = 1;
+      $payment->
         $payment->payment_method_id = "pix";//metodo de pagamento
         $payment->payer = array( // dados do cliente
-          "email" => "flavyosilva@email.com",
-          "fist_name"=> "Flávio",
-          "last_name"=>"Francisco",
+          "email" => $data->email,
+          "fist_name"=> $data->fist_name,
+          "last_name"=>$data->last_name,
           "indentification"=>array(
-            "type"=>"CPF",
-            "number"=>"12345678910"
+            "type"=>$data->last_name,
+            "number"=>$data->number
           )
         );
         if ($payment->save()) {
