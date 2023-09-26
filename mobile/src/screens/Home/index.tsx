@@ -27,6 +27,7 @@ import { Theme } from "../../../Thema";
 import { AuthContext } from "../../context/Auth";
 import { BottomSheetComponent } from "../../components/BottomSheetComponent";
 import { AuthContextTeacher } from "../../context/Teacher";
+import Payment from "../../components/MercadoPagoCustomTabs/MercadoPagoCustomTabs";
 
 
 
@@ -85,6 +86,7 @@ export default function Home() {
             </ConteinerList2>
             <ConteinerList3>
                 <Card3 name={"Informaçao de pagamento"} />
+                <Payment />
             </ConteinerList3>
 
 
