@@ -12,7 +12,12 @@ use MercadoPago\Preference;
 class PaymentController extends BaseController
 {
     use ResponseTrait;
+    public function index(){
+      
+        return view('mercadoPago');
+       }
 
+    
     public function receivePayment()
     {
         $data = $this->request->getJSON();
@@ -20,7 +25,7 @@ class PaymentController extends BaseController
         SDK::setAccessToken(KEY_MP);
    
 
-        // criação de um <pagamento></pagamento>
+        // criando pagamento
         $payment = new Payment();
         $payer = new Payer();
             
@@ -55,12 +60,17 @@ class PaymentController extends BaseController
     }
     public function preference()
     {
+       SDK::configure([KEY_MP => KEY_MP]);
     $preference = new Preference();
 
     $item = new Item();
     $item->title = 'Aula';
     $item->quantity = 1;
     $item->unit_price = 100.00;
+    
+    $payer = new Payer();
+    $payer->email = "test_user_19653727@testuser.com";
+
     $preference->items = array($item);
     $preference->save();
     }

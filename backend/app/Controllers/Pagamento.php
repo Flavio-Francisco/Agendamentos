@@ -19,7 +19,7 @@ class Pagamento extends BaseController
         $payment = new MercadoPago\Payment();
         
         $payment->transaction_amount = $data->transaction_amount; // valor da transação
-     //  $payment->token = "YOUR_CARD_TOKEN";
+     //$payment->token = "YOUR_CARD_TOKEN";
         $payment->description = $data->description;//produto no caso as horas aulas
       //$payment->installments = 1;
     
