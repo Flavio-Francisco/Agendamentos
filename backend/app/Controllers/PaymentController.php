@@ -6,6 +6,8 @@ use CodeIgniter\API\ResponseTrait;
 use MercadoPago\SDK;
 use MercadoPago\Payment;
 use MercadoPago\Payer;
+use MercadoPago\Item;
+use MercadoPago\Preference;
 
 class PaymentController extends BaseController
 {
@@ -50,5 +52,16 @@ class PaymentController extends BaseController
             // Falha no pagamento
             return $this->failServerError('Pagamento não realizado!');
         }
+    }
+    public function preference()
+    {
+    $preference = new Preference();
+
+    $item = new Item();
+    $item->title = 'Aula';
+    $item->quantity = 1;
+    $item->unit_price = 100.00;
+    $preference->items = array($item);
+    $preference->save();
     }
 }

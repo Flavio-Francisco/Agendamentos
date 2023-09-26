@@ -73,6 +73,7 @@ $routes->get('/rest', 'DateController::rest');
 
 $routes->post('payment/receive', 'PaymentController::receivePayment');
 $routes->post('payment/pix','Pagamento::pix');
+$routes->post('payment/preference','Pagamento::preference');
 
 /*
  * --------------------------------------------------------------------
