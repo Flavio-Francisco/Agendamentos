@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
-use MercadoPago\SDK;
 use MercadoPago;
 class Pagamento extends BaseController
 {
@@ -19,12 +18,12 @@ class Pagamento extends BaseController
 
         $payment = new MercadoPago\Payment();
         
-        $payment->transaction_amount = 141; // valor da transação
+        $payment->transaction_amount = $data->transaction_amount; // valor da transação
      //  $payment->token = "YOUR_CARD_TOKEN";
         $payment->description = $data->description;//produto no caso as horas aulas
       //$payment->installments = 1;
-      $payment->
-        $payment->payment_method_id = "pix";//metodo de pagamento
+    
+        $payment->payment_method_id ="pix";//metodo de pagamento
         $payment->payer = array( // dados do cliente
           "email" => $data->email,
           "fist_name"=> $data->fist_name,
@@ -45,9 +44,6 @@ class Pagamento extends BaseController
         }else{
             return $this->failServerError("pagamento não realizado!");
         }
-        
-    
-        
        
     }
 }

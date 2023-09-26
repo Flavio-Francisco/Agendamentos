@@ -72,6 +72,7 @@ $routes->get('/rest', 'DateController::rest');
 // mercado pago
 
 $routes->post('payment/receive', 'PaymentController::receivePayment');
+$routes->post('payment/pix','Pagamento::pix');
 
 /*
  * --------------------------------------------------------------------
