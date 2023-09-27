@@ -1,4 +1,5 @@
 import { View, Text, FlatList, TouchableOpacity, Alert } from "react-native";
+import { AuthContextDate } from '../../context/Agenda';
 import {
     Conteiner,
     ProtuctConteiner,
@@ -12,18 +13,20 @@ import {
     TimeText2,
     ConteinerTeacher
 } from "./styles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 
 interface Agenda {
     id: string;
-    date:string;
-    timeInicial: string;
-    timeFinal: string;
+    date: string;
+    start_time: string;
+    end_time: string;
 }
 export default function Agenda() {
-    const { navigate} = useNavigation()
+
+    const { dateMak, clearDate } = useContext(AuthContextDate)
+    const { navigate } = useNavigation()
     const [timeSelect, setTimeSelect] = useState('')
     const [resevetion, setResevetion] = useState<Agenda>()
     function addTime(id: string, item: Agenda) {
@@ -34,7 +37,7 @@ export default function Agenda() {
 
             setTimeSelect(id)
             setResevetion(item)
-        
+            clearDate();
             Alert.alert("Horário Resevado com Sucesso")
             navigate('Home')
         }
@@ -44,38 +47,6 @@ export default function Agenda() {
         console.log('====================================');
     }
 
-    const Data = [
-        {
-            id: '1',
-            date:'15/10/2023',
-            timeInicial: '12:30',
-            timeFinal: '14:30',
-        },
-        {
-            id: '2',
-            date:'22/10/2023',
-            timeInicial: '09:00',
-            timeFinal: '10:30',
-        },
-        {
-            id: '3',
-            date:'05/11/2023',
-            timeInicial: '13:30',
-            timeFinal: '14:30',
-        },
-        {
-            id: '5',
-            date:'05/11/2023',
-            timeInicial: '15:30',
-            timeFinal: '16:30',
-        },
-        {
-            id: '6',
-            date:'06/11/2023',
-            timeInicial: '08:30',
-            timeFinal: '90:30',
-        },
-    ]
 
 
     return (
@@ -88,7 +59,7 @@ export default function Agenda() {
             <FlatList
 
                 showsVerticalScrollIndicator={false}
-                data={Data}
+                data={dateMak}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <TimeConteiner onPress={() => addTime(item.id, item)}>
@@ -96,8 +67,8 @@ export default function Agenda() {
                             <  ConteinrtTime>
                                 <MatterText2>{item.date}</MatterText2>
                                 <ConteinerTeacher>
-                                    
-                                    <TimeText2>{item.timeInicial} as {item.timeFinal}</TimeText2>
+
+                                    <TimeText2>{item.start_time} as {item.end_time}</TimeText2>
                                 </ConteinerTeacher>
                             </  ConteinrtTime>
 
@@ -107,8 +78,8 @@ export default function Agenda() {
                                 <MatterText>Data:  {item.date}</MatterText>
 
                                 <ConteinerTeacher>
-                                   
-                                    <TimeText>Horários:  {item.timeInicial} as {item.timeFinal}</TimeText>
+
+                                    <TimeText>Horários:  {item.start_time} as {item.end_time}</TimeText>
 
                                 </ConteinerTeacher>
                             </ConteinrtTime2>

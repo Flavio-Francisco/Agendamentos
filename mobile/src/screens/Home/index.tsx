@@ -27,8 +27,6 @@ import { AuthContext } from "../../context/Auth";
 import { BottomSheetComponent } from "../../components/BottomSheetComponent";
 import { AuthContextTeacher } from "../../context/Teacher";
 import Payment from "../../components/MercadoPagoCustomTabs/MercadoPagoCustomTabs";
-import { openBrowserAsync } from "expo-web-browser";
-
 
 
 
@@ -41,9 +39,6 @@ export default function Home() {
 
     const { navigate } = useNavigation();
 
-    function handleopenBrowser() {
-        openBrowserAsync("https://www.mercadopago.com.mx/checkout/v1/checkouts/create?access_token=TEST-7bfc6a8b-208b-4319-9b40-a85f3317055f");
-    }
 
     function handleNavigate() {
         navigate('Options', {

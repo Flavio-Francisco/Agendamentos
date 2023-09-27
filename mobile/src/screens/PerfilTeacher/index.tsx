@@ -54,7 +54,7 @@ export function PerfilTeacher() {
 
         <Conteiner>
             < ConteinerAvatar >
-                <AvatarTeacher source={{ uri: avatar }} />
+                <AvatarTeacher source={require('../../../assets/person.png')} />
                 <StarFixer maxStars={5} rating={rating} onRatingPress={handleRatingPress} />
             </ConteinerAvatar>
 

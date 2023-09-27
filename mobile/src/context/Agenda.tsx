@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useCallback, useState } from "react";
+import { api } from "../api/api";
 
 
 interface Agenda {
@@ -10,8 +11,9 @@ interface Agenda {
 }
 
 interface Horarios {
-  dateMak: Date | undefined;
-  createDate: (date: Date) => void;
+  dateMak: Agenda[];
+  getDate: (id: string) => void;
+  clearDate: () => void
 }
 
 interface AuthContextProviderProps {
@@ -22,17 +24,32 @@ export const AuthContextDate = createContext({} as Horarios);
 
 
 export function AuthContextProviderDate({ children }: AuthContextProviderProps) {
-  const [dateMak, setDateMak] = useState<Date | undefined>()
-  const createDate = useCallback((date: Date) => {
-    setDateMak(date);
-    console.log("essa é a data do contexto : " + dateMak);
+  const [dateMak, setDateMak] = useState<Agenda[]>([])
 
-  }, [dateMak])
+  async function getDate(id: string) {
+    await api.get(`/getDate/${id}`)
+      .then(respose => {
+        setDateMak(respose.data);
+        console.log(dateMak);
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+  }
+
+  async function clearDate() {
+    setDateMak([])
+  }
+
+
+
   return (
     <AuthContextDate.Provider
       value={{
         dateMak,
-        createDate
+        clearDate,
+        getDate
       }}
     >
       {children}

@@ -9,7 +9,7 @@ export const Conteiner = styled.View`
 `;
 
 export const Conteinertop = styled.View`
-  height: 21%;
+  height: 23%;
   width: 100%;
   justify-content: center;
   background-color: ${Theme.colors.greem};
@@ -35,7 +35,6 @@ export const ConteinerList2 = styled.View`
 export const ConteinerList3 = styled.View`
   height: 25%;
   justify-content: center;
-  margin-top: -20px;
   background-color: ${Theme.colors.white100};
 `;
 export const HeaderHome = styled.View`

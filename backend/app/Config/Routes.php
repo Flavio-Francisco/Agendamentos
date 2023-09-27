@@ -21,7 +21,7 @@ $routes->set404Override();
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
 // $routes->setAutoRoute(false);
-$routes->get('test','Home::index'); 
+$routes->get('/test','Home::index'); 
 
 /*
  * --------------------------------------------------------------------
@@ -43,7 +43,7 @@ $routes->get('/uniqueUser/(:any)','User::uniqueUser/$1',['filter' => 'jwt']);
 
 $routes->post('/createtime/(:any)','TimesAvailable::createTime/$1',['filter' => 'jwt']);
 
-$routes->get('/getDate/(:any)','TimesAvailable::getDate/$1',['filter' => 'jwt']);
+$routes->get('/getDate/(:any)','TimesAvailable::getDate/$1');
 $routes->delete('/deleteDate/(:any)','TimesAvailable::deleteDate/$1',['filter' => 'jwt']);
 $routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1',['filter' => 'jwt']);
 
@@ -59,7 +59,7 @@ $routes->get('/getClient','Client::getClient',['filter' => 'jwt']);
 $routes->get('/uniqueClient/(:any)','Client::uniqueClient/$1',['filter' => 'jwt']);
 $routes->delete('/deleteClient/(:any)','Client::deleteClient/$1',['filter' => 'jwt']);
 $routes->patch('/agenda/(:any)','Client::agenda/$1',['filter' => 'jwt']);
-$routes->get('/getDateClient/(:any)','Client::getDateClient/$1',['filter' => 'jwt']);
+$routes->get('/getDateClient/(:any)','Client::getDateClient/$1');
 
 //materia
 $routes->get('/matte/(:any)','User::matte/$1'); 
@@ -75,6 +75,7 @@ $routes->post('payment/receive', 'PaymentController::receivePayment');
 $routes->post('payment/pix','Pagamento::pix');
 $routes->post('payment/preference','Pagamento::preference');
 $routes->get('test','PaymentController::index'); 
+$routes->post('\pix','PaymentController::paymentpix'); 
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -6,6 +6,7 @@ import { FlatList } from 'react-native';
 import CardTeacher from '../../components/CardTeacher';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { AuthContextTeacher, AuthTeacherData } from '../../context/Teacher';
+import { AuthContextDate } from '../../context/Agenda';
 
 
 
@@ -23,7 +24,6 @@ export default function StarTeacher() {
     const route = useRoute<PerfilTeacherParams>();
     const teacher = route.params;
 
-    const navigation = useNavigation();
     const { portuguese, chemical, physical, biology, mathematics, geography, english, history } = useContext(AuthContextTeacher)
 
     const handleTeacher: AuthTeacherData[] | null = (() => {
@@ -82,7 +82,7 @@ export default function StarTeacher() {
                 <FlatList
                     data={handleTeacher}
                     keyExtractor={item => item.id.toString()}
-                    renderItem={(item) => <CardTeacher name={item.item.name} id={''} userName={''} email={''} password={''} adm={false} teacher={false} star={0} matte_id={0} />}
+                    renderItem={(item) => <CardTeacher id={item.item.id} userName={item.item.userName} star={item.item.star} timeValue={100} />}
                 />
             </ViewTeacher>
         </Conteiner>
