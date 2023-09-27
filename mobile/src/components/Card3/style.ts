@@ -1,8 +1,7 @@
 import styled from "styled-components/native";
 import { Theme } from "../../../Thema";
 
-export const Conteiner = styled.View`
-  
+export const Conteiner = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   height: 150px;
@@ -10,8 +9,6 @@ export const Conteiner = styled.View`
   background-color: ${Theme.colors.white100};
   border-radius: 20px;
   border: 1px ${Theme.colors.greem};
-
- 
 `;
 
 export const ConteinerTask = styled.TouchableOpacity`
@@ -25,10 +22,9 @@ export const ConteinerTask = styled.TouchableOpacity`
 
 export const TextCard = styled.Text`
   color: ${Theme.colors.greem};
-  font-weight:bold;
+  font-weight: bold;
   font-size: 20px;
   text-align: center;
   width: 80%;
   margin-left: -18px;
-
 `;

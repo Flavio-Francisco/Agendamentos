@@ -12,7 +12,7 @@ export default function Payment() {
         <View style={styles.container} >
             < Button title="Open Browser"
                 onPress={
-                    () => openBrowserAsync('http://10.0.0.2:8080payment/preference')
+                    () => openBrowserAsync('http://192.168.0.10:8080/test')
                 }
             />
         </View>);

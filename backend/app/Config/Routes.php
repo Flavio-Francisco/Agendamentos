@@ -12,7 +12,7 @@ $routes = Services::routes();
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('User');
+$routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -21,7 +21,7 @@ $routes->set404Override();
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
 // $routes->setAutoRoute(false);
-$routes->get('/','Home::index'); 
+$routes->get('test','Home::index'); 
 
 /*
  * --------------------------------------------------------------------
@@ -74,7 +74,7 @@ $routes->get('/rest', 'DateController::rest');
 $routes->post('payment/receive', 'PaymentController::receivePayment');
 $routes->post('payment/pix','Pagamento::pix');
 $routes->post('payment/preference','Pagamento::preference');
-
+$routes->get('test','PaymentController::index'); 
 /*
  * --------------------------------------------------------------------
  * Additional Routing
