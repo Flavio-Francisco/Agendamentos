@@ -12,13 +12,12 @@ import {
     ConteinerList3
 } from "./style";
 
-;
+
 
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Card2 from "../../components/Card2/Card2";
 import Card from "../../components/Card/Card";
-import Card3 from './../../components/Card3/Card';
 import Card4 from "../../components/Card4/Card4";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
@@ -89,7 +88,7 @@ export default function Home() {
 
             </ConteinerList2>
             <ConteinerList3 >
-                <Card3 name={"Informaçao de pagamento"} />
+
                 <Payment />
             </ConteinerList3>
 
@@ -110,6 +109,3 @@ export default function Home() {
     )
 }
 
-function handleopenBrowser() {
-    throw new Error("Function not implemented.");
-}

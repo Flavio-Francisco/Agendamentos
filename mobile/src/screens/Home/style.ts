@@ -4,7 +4,7 @@ import { Theme } from "../../../Thema";
 export const Conteiner = styled.View`
   flex: 1;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   background-color: ${Theme.colors.white100};
 `;
 
@@ -18,7 +18,7 @@ export const Conteinertop = styled.View`
 export const ConteinerList = styled.View`
   height: 25%;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   width: 99%;
   margin-bottom: -10px;
   background-color: ${Theme.colors.white100};
@@ -35,9 +35,8 @@ export const ConteinerList2 = styled.View`
 export const ConteinerList3 = styled.View`
   height: 25%;
   justify-content: center;
-  margin-top: 0px;
+  margin-top: -20px;
   background-color: ${Theme.colors.white100};
- 
 `;
 export const HeaderHome = styled.View`
   height: 30%;
