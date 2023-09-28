@@ -65,7 +65,7 @@ public function rest()
             return $dates[$i];
         }
     }
-    //return $this->respond($dates);
+    return $this->respond($dates);
  }
 
 

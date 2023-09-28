@@ -54,11 +54,11 @@ $routes->post('/loginclient', 'Login::authJwtClient');
 
 //clientes
 
-$routes->post('/createClient','Client::createClient',['filter' => 'jwt']); 
-$routes->get('/getClient','Client::getClient',['filter' => 'jwt']);
-$routes->get('/uniqueClient/(:any)','Client::uniqueClient/$1',['filter' => 'jwt']);
-$routes->delete('/deleteClient/(:any)','Client::deleteClient/$1',['filter' => 'jwt']);
-$routes->patch('/agenda/(:any)','Client::agenda/$1',['filter' => 'jwt']);
+$routes->post('/createClient','Client::createClient'/*,['filter' => 'jwt']*/); 
+$routes->get('/getClient','Client::getClient'/*,['filter' => 'jwt']*/);
+$routes->get('/uniqueClient/(:any)','Client::uniqueClient/$1'/*,['filter' => 'jwt']*/);
+$routes->delete('/deleteClient/(:any)','Client::deleteClient/$1'/*,['filter' => 'jwt']*/);
+$routes->patch('/agenda/(:any)','Client::agenda/$1'/*,['filter' => 'jwt']*/);
 $routes->get('/getDateClient/(:any)','Client::getDateClient/$1');
 
 //materia

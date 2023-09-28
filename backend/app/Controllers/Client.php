@@ -15,10 +15,12 @@ class Client extends ResourceController
     protected $model;
     protected $dataModel ;
     public function __construct(){
+
         $this->dataModel = new ScheduledTimesAvailable();
         $this->model = new ClientModel(); 
 
     }
+
     public function createClient()
     {
     
@@ -99,11 +101,36 @@ class Client extends ResourceController
     }
 
     public function agenda($id =null){
+       
         $data = $this->request->getJSON();
+      
+       
+
         if ($this->dataModel->where(['id'=>$id])->find()) {
+
+            //atualizando o saldo
+            $client_data = $this->model->select(['saldo'])->where(['id'=>$data->client_id])->find();
+              $calc = $client_data['0'];
+           //falta ataualizar o saldo 
+  
+              $client_data=[
+                'saldo'=> $calc['saldo']- $data->valor
+              ];
+           
+              var_dump($client_data);
+              die;
+            if ($client_data) {
+               
+              
+                
+            }
             
+
+
+            //reservando horario
+
             $this->dataModel->update($id,$data);
-            return $this->respond($data);
+            return $this->response->setJSON($client_data);
         }
         return $this->failServerError("Horarios não encontrados!");
     }

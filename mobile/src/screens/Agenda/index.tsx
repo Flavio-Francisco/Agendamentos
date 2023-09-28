@@ -34,7 +34,7 @@ export default function Agenda() {
         if (timeSelect == id) {
             setTimeSelect('')
         } else {
-
+            // desconto de saldo
             setTimeSelect(id)
             setResevetion(item)
             clearDate();
