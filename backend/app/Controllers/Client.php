@@ -103,35 +103,20 @@ class Client extends ResourceController
     public function agenda($id =null){
        
         $data = $this->request->getJSON();
+        $client_data = $this->model->select(['saldo'])->where(['id'=>$data->client_id])->find();
+        $calc = $client_data[0]['saldo'];
       
-       
 
-        if ($this->dataModel->where(['id'=>$id])->find()) {
-
-            //atualizando o saldo
-            $client_data = $this->model->select(['saldo'])->where(['id'=>$data->client_id])->find();
-              $calc = $client_data['0'];
-           //falta ataualizar o saldo 
-  
-              $client_data=[
-                'saldo'=> $calc['saldo']- $data->valor
-              ];
-           
-              var_dump($client_data);
-              die;
-            if ($client_data) {
-               
-              
-                
-            }
-            
-
-
-            //reservando horario
-
+        if ($client_data[0]['saldo'] > $data->valor && $this->dataModel->where(['id'=>$id])->find()){
+            //reservando horario e atualizando saldo
+            $new_saldo = $calc - $data->valor;
+            $this->model->where(['id' => $data->client_id])->set(['saldo' => $new_saldo])->update();
             $this->dataModel->update($id,$data);
-            return $this->response->setJSON($client_data);
+            
+            return $this->response->setJSON($new_saldo);
+        }else{
+            return $this->failServerError("Saldo Insufucuente!");
         }
-        return $this->failServerError("Horarios não encontrados!");
+        
     }
 }
