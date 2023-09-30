@@ -14,7 +14,6 @@ export const ProtuctConteiner = styled.View`
   border-color: ${Theme.colors.greem};
   border-block-end-width: 3px;
   margin-top: 20px;
-
 `;
 export const ProtuctText = styled.Text`
   font-weight: bold;
@@ -49,21 +48,21 @@ export const TimeConteiner = styled.TouchableOpacity`
   border: 1px ${Theme.colors.greem};
   width: 350px;
   margin: 5px;
-  border-radius:10px;
+  border-radius: 10px;
 `;
 
-
-export const ConteinrtTime= styled.View`
+export const ConteinrtTime = styled.View`
+  justify-content: center;
   background-color: ${Theme.colors.greem};
-  height: 80px;
-  border-radius:10px;
+  border-radius: 10px;
+  padding: 5px;
 `;
-export const ConteinerTeacher= styled.View`
-  
-  flex-direction:row;
-  align-items:center;
+export const ConteinerTeacher = styled.View`
+  flex-direction: row;
+  align-items: center;
 `;
-export const ConteinrtTime2= styled.View`
+export const ConteinrtTime2 = styled.View`
   background-color: ${Theme.colors.white100};
-  border-radius:10px;
+  border-radius: 10px;
+  padding: 5px;
 `;
