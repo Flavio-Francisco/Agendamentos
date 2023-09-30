@@ -10,12 +10,24 @@ interface Agenda {
   end_time: string;
 
 }
+interface DateAluno {
+  id: string;
+  date: string;
+  start_time: string;
+  available: boolean,
+  prof_id: string;
+  client_id: string;
+  end_time: string;
+  repeat: string;
+}
 
 interface Horarios {
   dateMak: Agenda[];
+  dateAluno: DateAluno[];
   getDate: (id: string) => void;
   clearDate: () => void;
   agenda: (id: string) => void;
+  dateUser: (id: number) => void;
 }
 
 interface AuthContextProviderProps {
@@ -28,6 +40,7 @@ export const AuthContextDate = createContext({} as Horarios);
 export function AuthContextProviderDate({ children }: AuthContextProviderProps) {
   const { user } = useContext(AuthContext)
   const [dateMak, setDateMak] = useState<Agenda[]>([])
+  const [dateAluno, setAluno] = useState<DateAluno[]>([])
 
   // horários disponiveis
   async function getDate(id: string) {
@@ -35,6 +48,17 @@ export function AuthContextProviderDate({ children }: AuthContextProviderProps) 
       .then(respose => {
         setDateMak(respose.data);
         console.log(dateMak);
+      })
+      .catch(erro => {
+        console.log(erro);
+
+      })
+  }
+  async function dateUser(id: number) {
+    await api.get(`/getDateClient/${id}`)
+      .then(respose => {
+        setAluno(respose.data);
+        console.log(dateAluno);
       })
       .catch(erro => {
         console.log(erro);
@@ -73,6 +97,8 @@ export function AuthContextProviderDate({ children }: AuthContextProviderProps) 
         clearDate,
         getDate,
         agenda,
+        dateAluno,
+        dateUser
       }}
     >
       {children}

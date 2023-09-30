@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use App\Models\ClientModel;
 use App\Models\ScheduledTimesAvailable;
+use App\Models\UserModel;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -13,12 +14,14 @@ class Client extends ResourceController
     use ResponseTrait;
 
     protected $model;
-    protected $dataModel ;
+    protected $dataModel;
+    protected $userModel;
+
     public function __construct(){
 
         $this->dataModel = new ScheduledTimesAvailable();
         $this->model = new ClientModel(); 
-
+        $this->userModel= new UserModel();
     }
 
     public function createClient()
@@ -42,12 +45,17 @@ class Client extends ResourceController
 
     public function uniqueClient($id = null){
         $data = $this->model->where(['id'=> $id])->find();
-        if ($data ) {
+        
+        if ($data) {
+         
             return $this->respond($data);
         }
        
+       
         return $this->failNotFound('Nenhum dado encontrado com id '.$id); 
     }
+
+    
 
     public function updateClient($id = null){
 
@@ -94,6 +102,7 @@ class Client extends ResourceController
         $data = $this->dataModel->where(['client_id'=>$client_id])->findAll();
 
         if ($data) {
+
            return $this->respond($data);
         }
         return $this->failServerError("Horarios não encontrados!");

@@ -4,71 +4,27 @@ import {
     ProtuctConteiner,
     ProtuctText,
     TimeConteiner,
-    TimeText,
-    MatterText,
     MatterText2,
     ConteinrtTime,
-    ConteinrtTime2,
     TimeText2,
     ConteinerTeacher
 } from "./styles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { AuthContextDate } from "../../context/Agenda";
 
 
-interface Agenda {
-    id: string;
-    teacher: string;
-    timeInicial: string;
-    timeFinal: string;
-}
 export default function Schedule() {
-    const { navigate} = useNavigation()
-    const [timeSelect, setTimeSelect] = useState('')
-    const [resevetion, setResevetion] = useState<Agenda>()
-    function addTime(id: string, item: Agenda) {
+    const { navigate } = useNavigation()
 
-        if (timeSelect == id) {
-            setTimeSelect('')
-        } else {
 
-            setTimeSelect(id)
-            setResevetion(item)
-        
-          
-            navigate('Home')
-        }
-        console.log('====================================');
-        console.log(timeSelect);
-        console.log(resevetion);
-        console.log('====================================');
+    function addTime() {
+
+        navigate('Home')
     }
 
-    const Data = [
-        {
-            id: '1',
-            teacher: "Paulo",
-            text: "Matématica",
-            timeInicial: '12:30',
-            timeFinal: '14:30',
-        },
-        {
-            id: '2',
-            teacher: 'Juliana',
-            text: "Português",
-            timeInicial: '09:00',
-            timeFinal: '10:30',
-        },
-        {
-            id: '3',
-            teacher: 'Everton',
-            text: "Geografia",
-            timeInicial: '13:30',
-            timeFinal: '14:30',
-        }
-    ]
 
-
+    const { dateAluno } = useContext(AuthContextDate)
     return (
         <Conteiner>
 
@@ -79,32 +35,20 @@ export default function Schedule() {
             <FlatList
 
                 showsVerticalScrollIndicator={false}
-                data={Data}
+                data={dateAluno}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                    <TimeConteiner onPress={() => addTime(item.id, item)}>
-                        {item.id === timeSelect ?
-                            <  ConteinrtTime>
-                                <MatterText2>{item.text}</MatterText2>
-                                <ConteinerTeacher>
-                                    <MatterText2>{item.teacher}</MatterText2>
-                                    <TimeText2>{item.timeInicial} as {item.timeFinal}</TimeText2>
-                                </ConteinerTeacher>
-                            </  ConteinrtTime>
+                    <TimeConteiner onPress={() => addTime()}>
 
-                            :
+                        <  ConteinrtTime>
+                            <MatterText2>{item.date}</MatterText2>
+                            <ConteinerTeacher>
+                                <MatterText2>{item.prof_id}</MatterText2>
+                                <TimeText2>{item.start_time} as {item.end_time}</TimeText2>
+                            </ConteinerTeacher>
+                        </  ConteinrtTime>
 
-                            <ConteinrtTime2>
-                                <MatterText>{item.text}</MatterText>
 
-                                <ConteinerTeacher>
-                                    <MatterText>{item.teacher}</MatterText>
-                                    <TimeText>{item.timeInicial} as {item.timeFinal}</TimeText>
-
-                                </ConteinerTeacher>
-                            </ConteinrtTime2>
-
-                        }
 
                     </TimeConteiner>
                 )}

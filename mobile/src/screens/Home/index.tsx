@@ -27,14 +27,17 @@ import { AuthContext } from "../../context/Auth";
 import { BottomSheetComponent } from "../../components/BottomSheetComponent";
 import { AuthContextTeacher } from "../../context/Teacher";
 import Payment from "../../components/MercadoPagoCustomTabs/MercadoPagoCustomTabs";
+import { AuthContextDate } from "../../context/Agenda";
+
 
 
 
 
 export default function Home() {
 
-    const { filterTeacher, matterfindAll } = useContext(AuthContextTeacher)
+    const { matterfindAll } = useContext(AuthContextTeacher)
     const { user, singnOut } = useContext(AuthContext)
+    const { dateUser } = useContext(AuthContextDate)
     const [modalVisible, setModalVisible] = useState(false)
 
     const { navigate } = useNavigation();
@@ -57,6 +60,7 @@ export default function Home() {
     useFocusEffect(
         React.useCallback(() => {
             user
+            dateUser(user.user.id);
             matterfindAll();
             console.log("Saldo da home: ", user.user?.saldo);
         }, [])
