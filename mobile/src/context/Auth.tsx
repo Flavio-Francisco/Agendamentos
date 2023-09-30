@@ -12,7 +12,7 @@ export interface AuthUserData {
     userName: string;
     email: string;
     password: string;
-    saldo:number;
+    saldo: number;
   }
 
 }
@@ -22,6 +22,8 @@ export interface AuthContextDataProps {
   user: AuthUserData;
   singnIn: (data: AuthUserData) => Promise<void>;
   singnOut: () => void;
+  setSaldo: (newSaldo: number) => void
+
 }
 
 interface AuthContextProviderProps {
@@ -67,6 +69,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
 
   }
+  function setSaldo(newSaldo: number) {
+    try {
+      const userData = user;
+      userData.user.saldo = newSaldo;
+      AsyncStorage.setItem('userData', JSON.stringify(userData));
+
+    } catch (error) {
+
+    }
+  }
   function singnOut() {
 
     AsyncStorage.removeItem('userData').catch((error) => {
@@ -81,7 +93,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         id: 0,
         password: '',
         userName: "",
-        saldo:0
+        saldo: 0
       },
 
     });
@@ -94,7 +106,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       value={{
         singnOut,
         user,
-        singnIn
+        singnIn,
+        setSaldo
       }}
     >
 

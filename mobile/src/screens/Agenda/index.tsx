@@ -28,7 +28,7 @@ interface Agenda {
 export default function Agenda() {
 
     const { dateMak, clearDate } = useContext(AuthContextDate)
-    const { user } = useContext(AuthContext)
+    const { user, setSaldo } = useContext(AuthContext)
     const { navigate } = useNavigation()
     const [timeSelect, setTimeSelect] = useState('')
 
@@ -42,8 +42,8 @@ export default function Agenda() {
             valor: 100
         })
             .then(response => {
-                user.user.saldo = response.data
-                console.log("saldo altual: ", response.data);
+                setSaldo(response.data);
+                console.log("saldo atual: ", response.data);
                 clearDate();
                 Alert.alert("Horário Resevado com Sucesso");
                 navigate('Home')

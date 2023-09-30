@@ -19,7 +19,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Card2 from "../../components/Card2/Card2";
 import Card from "../../components/Card/Card";
 import Card4 from "../../components/Card4/Card4";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Theme } from "../../../Thema";
@@ -49,16 +49,19 @@ export default function Home() {
     }
     function exist() {
         singnOut();
-        setModalVisible(!modalVisible)
+        setModalVisible(!modalVisible);
         navigate('Login')
+
     }
-    const currencyValue = user.user?.saldo;
+    // atualizando dados quando voltar para home
+    useFocusEffect(
+        React.useCallback(() => {
+            user
+            matterfindAll();
+            console.log("Saldo da home: ", user.user?.saldo);
+        }, [])
+    );
 
-    useEffect(() => {
-        matterfindAll()
-        console.log(filterTeacher);
-
-    }, [])
 
 
     return (
