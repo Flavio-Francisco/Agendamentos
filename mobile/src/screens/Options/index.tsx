@@ -7,12 +7,7 @@ import { Theme } from '../../../Thema';
 
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/Auth";
-import { api } from "../../api/api";
 import { AuthContextTeacher } from "../../context/Teacher";
-
-
-
-
 
 
 export default function Options() {

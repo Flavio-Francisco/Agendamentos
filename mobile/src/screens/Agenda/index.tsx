@@ -13,8 +13,10 @@ import {
     TimeText2,
     ConteinerTeacher
 } from "./styles";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { api } from "../../api/api";
+import { AuthContext } from "../../context/Auth";
 
 
 interface Agenda {
@@ -26,26 +28,28 @@ interface Agenda {
 export default function Agenda() {
 
     const { dateMak, clearDate } = useContext(AuthContextDate)
+    const { user } = useContext(AuthContext)
     const { navigate } = useNavigation()
     const [timeSelect, setTimeSelect] = useState('')
-    const [resevetion, setResevetion] = useState<Agenda>()
-    function addTime(id: string, item: Agenda) {
 
-        if (timeSelect == id) {
-            setTimeSelect('')
-        } else {
-            // desconto de saldo
-            setTimeSelect(id)
-            setResevetion(item)
-            clearDate();
-            Alert.alert("Horário Resevado com Sucesso")
-            navigate('Home')
-        }
-        console.log('====================================');
-        console.log(timeSelect);
-        console.log(resevetion);
-        console.log('====================================');
+
+
+    async function agenda(id: string) {
+        setTimeSelect(id)
+        await api.patch(`agenda/${id}`, {
+            client_id: user?.user.id,
+            avaliable: false,
+            valor: 100
+        })
+            .then(response => {
+                user.user.saldo = response.data
+                console.log("saldo altual: ", response.data);
+                clearDate();
+                Alert.alert("Horário Resevado com Sucesso");
+                navigate('Home')
+            })
     }
+
 
 
 
@@ -62,7 +66,7 @@ export default function Agenda() {
                 data={dateMak}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                    <TimeConteiner onPress={() => addTime(item.id, item)}>
+                    <TimeConteiner onPress={() => { agenda(item.id) }}>
                         {item.id === timeSelect ?
                             <  ConteinrtTime>
                                 <MatterText2>{item.date}</MatterText2>

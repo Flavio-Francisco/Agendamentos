@@ -111,8 +111,8 @@ class Client extends ResourceController
             //reservando horario e atualizando saldo
             $new_saldo = $calc - $data->valor;
             $this->model->where(['id' => $data->client_id])->set(['saldo' => $new_saldo])->update();
-            $this->dataModel->update($id,$data);
-            
+            $this->dataModel->where(['id'=>$id])->set(['available'=>false,'client_id'=>$data->client_id])->update();
+           
             return $this->response->setJSON($new_saldo);
         }else{
             return $this->failServerError("Saldo Insufucuente!");
