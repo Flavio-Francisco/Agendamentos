@@ -61,6 +61,8 @@ $routes->delete('/deleteClient/(:any)','Client::deleteClient/$1'/*,['filter' => 
 $routes->patch('/agenda/(:any)','Client::agenda/$1'/*,['filter' => 'jwt']*/);
 $routes->get('/getDateClient/(:any)','Client::getDateClient/$1');
 
+
+
 //materia
 $routes->get('/matte/(:any)','User::matte/$1'); 
 
