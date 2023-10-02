@@ -60,7 +60,7 @@ export default function Home() {
     useFocusEffect(
         React.useCallback(() => {
             user
-            dateUser(user.user.id);
+
             matterfindAll();
             console.log("Saldo da home: ", user.user?.saldo);
         }, [])

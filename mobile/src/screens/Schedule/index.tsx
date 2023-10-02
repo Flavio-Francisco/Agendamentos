@@ -9,22 +9,30 @@ import {
     TimeText2,
     ConteinerTeacher
 } from "./styles";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContextDate } from "../../context/Agenda";
+import { Matter } from "../../components/matter";
+import React from "react";
+import { AuthContext } from "../../context/Auth";
 
 
 export default function Schedule() {
     const { navigate } = useNavigation()
-
+    const { dateAluno, dateUser } = useContext(AuthContextDate)
+    const { user, singnOut } = useContext(AuthContext)
 
     function addTime() {
 
         navigate('Home')
     }
 
+    useEffect(() => {
+        dateUser(user.user?.id);
+        dateAluno
 
-    const { dateAluno } = useContext(AuthContextDate)
+    }, [])
+
     return (
         <Conteiner>
 
@@ -41,9 +49,9 @@ export default function Schedule() {
                     <TimeConteiner onPress={() => addTime()}>
 
                         <  ConteinrtTime>
-                            <MatterText2>{item.date}</MatterText2>
+                            <MatterText2>{Matter(item.matter)}</MatterText2>
                             <ConteinerTeacher>
-                                <MatterText2>{item.prof_id}</MatterText2>
+
                                 <TimeText2>{item.start_time} as {item.end_time}</TimeText2>
                             </ConteinerTeacher>
                         </  ConteinrtTime>
@@ -57,5 +65,9 @@ export default function Schedule() {
 
         </Conteiner>
     )
+}
+
+function useFocusEffect(arg0: () => void) {
+    throw new Error("Function not implemented.");
 }
 
