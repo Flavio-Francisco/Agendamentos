@@ -61,7 +61,7 @@ export function AuthContextProviderDate({ children }: AuthContextProviderProps) 
     await api.get(`/getDateClient/${id}`)
       .then(respose => {
         setAluno(respose.data);
-        setLoad(!load)
+        setLoad(false)
         console.log(dateAluno);
       })
       .catch(erro => {
