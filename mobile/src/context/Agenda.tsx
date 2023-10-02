@@ -25,6 +25,7 @@ interface DateAluno {
 interface Horarios {
   dateMak: Agenda[];
   dateAluno: DateAluno[];
+  load: boolean;
   getDate: (id: string) => void;
   clearDate: () => void;
   agenda: (id: string) => void;
@@ -42,6 +43,7 @@ export function AuthContextProviderDate({ children }: AuthContextProviderProps) 
   const { user } = useContext(AuthContext)
   const [dateMak, setDateMak] = useState<Agenda[]>([])
   const [dateAluno, setAluno] = useState<DateAluno[]>([])
+  const [load, setLoad] = useState(true)
 
   // horários disponiveis
   async function getDate(id: string) {
@@ -59,6 +61,7 @@ export function AuthContextProviderDate({ children }: AuthContextProviderProps) 
     await api.get(`/getDateClient/${id}`)
       .then(respose => {
         setAluno(respose.data);
+        setLoad(!load)
         console.log(dateAluno);
       })
       .catch(erro => {
@@ -99,7 +102,8 @@ export function AuthContextProviderDate({ children }: AuthContextProviderProps) 
         getDate,
         agenda,
         dateAluno,
-        dateUser
+        dateUser,
+        load,
       }}
     >
       {children}
