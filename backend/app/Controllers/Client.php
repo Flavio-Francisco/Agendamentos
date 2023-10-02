@@ -31,9 +31,9 @@ class Client extends ResourceController
        
         if ( $this->model->save($data)) {
             
-            return $this->respondCreated($data, 'usuario criado comsucesso!');
+            return $this->response->setJSON("usuário criado 00 com sucesso!");
         }
-        return $this->failServerError("dados invalidos");
+        return $this->response->setJSON("Algo deu errado!");
 
     }
 
@@ -50,7 +50,6 @@ class Client extends ResourceController
          
             return $this->respond($data);
         }
-       
        
         return $this->failNotFound('Nenhum dado encontrado com id '.$id); 
     }

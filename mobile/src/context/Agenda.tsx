@@ -19,7 +19,7 @@ interface DateAluno {
   client_id: string;
   end_time: string;
   repeat: string;
-  matter: number
+  matter: string
 }
 
 interface Horarios {

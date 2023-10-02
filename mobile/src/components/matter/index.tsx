@@ -1,33 +1,43 @@
+import { ConteinerTeacher, ConteinrtTime, MatterText2, TimeConteiner, TimeText2 } from "./styles";
 
 
-export function Matter(matter: number): string {
+interface Matte {
+  id_matter: string;
+  start_time: string;
+  end_time: string;
+  onPress: () => void;
+
+}
 
 
-  let nomeMateria: string;
+export function Matter(props: Matte) {
 
-  switch (matter) {
-    case 1:
-      return nomeMateria = "Português";
+
+  var nomeMateria;
+
+  switch (props.id_matter) {
+    case '1':
+      nomeMateria = "Português";
       break;
-    case 2:
+    case '2':
       nomeMateria = "Matemática";
       break;
-    case 3:
+    case '3':
       nomeMateria = "Quimica";
       break;
-    case 4:
+    case '4':
       nomeMateria = "Física";
       break;
-    case 5:
+    case '5':
       nomeMateria = "Biologia";
       break;
-    case 6:
+    case ' 6':
       nomeMateria = "Geografia";
       break;
-    case 7:
+    case '7':
       nomeMateria = "Inglês";
       break;
-    case 8:
+    case '8':
       nomeMateria = "História";
       break;
 
@@ -37,14 +47,17 @@ export function Matter(matter: number): string {
 
 
   }
-  console.log('====================================');
-  console.log(matter);
-  console.log('====================================');
-  return nomeMateria;
 
-
-
-
+  return (
+    <TimeConteiner onPress={() => props.onPress()}>
+      <ConteinrtTime >
+        <MatterText2>{nomeMateria}</MatterText2>
+        <ConteinerTeacher>
+          <TimeText2>{props.start_time} as {props.end_time}</TimeText2>
+        </ConteinerTeacher>
+      </ConteinrtTime>
+    </TimeConteiner>
+  )
 
 }
 

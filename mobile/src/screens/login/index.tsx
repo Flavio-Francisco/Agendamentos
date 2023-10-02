@@ -21,10 +21,10 @@ interface MyFormValues {
 const validationSchema = Yup.object().shape({
   user: Yup.string()
     .label('user')
-    .required('user is required'),
+    .required('usuario obrigatório'),
   password: Yup.string()
     .label('password')
-    .required('senha obrigatoria').min(4, 'digite mais quatro digitos')
+    .required('senha obrigatória').min(4, 'digite mais quatro digitos')
 });
 
 export default function Login() {

@@ -6,11 +6,13 @@ import React from "react";
 import * as Yup from "yup";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
+import { api } from "../../api/api";
 
 
 
 interface MyFormValues {
     user: string;
+    email: string;
     password: string;
     passwordConfim: string;
 }
@@ -18,20 +20,23 @@ interface MyFormValues {
 const validationSchema = Yup.object().shape({
     user: Yup.string()
         .label('user')
-        .required('usuário').min(4, 'digite mais quatro letras'),
+        .required('Usuário obrigatório').min(4, 'digite mais quatro letras'),
+    email: Yup.string()
+        .label('email')
+        .required('Digite um email válido').matches(/^[a-zA-Z0-9._%+-]+@{1}[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'O email deve conter "@" e "."'),
     password: Yup.string()
         .label('password')
-        .required('senha obrigatoria').min(4, 'digite mais quatro digitos'),
+        .required('Senha obrigatória').min(4, 'digite mais quatro digitos'),
     passwordConfim: Yup.string()
-        .required('confime a sua senha!')
-        .oneOf([Yup.ref('password')], 'senhas não conferem'),
+        .required('Confime a sua senha!')
+        .oneOf([Yup.ref('password')], 'Senhas não conferem'),
 
 });
 
 
 export default function Register() {
     const navigation = useNavigation();
-    const FormValues: MyFormValues = { user: '', password: '', passwordConfim: '' };
+    const FormValues: MyFormValues = { user: '', email: '', password: '', passwordConfim: '' };
 
     return (
         <Conteiner>
@@ -49,9 +54,21 @@ export default function Register() {
 
                 onSubmit={values => {
                     if (values) {
+                        api.post('/createClient', {
+                            name: values.user,
+                            email: values.password,
+                            password: values.password
+                        })
+                            .then(respose => {
+                                Alert.alert(respose.data)
+                                navigation.navigate('Login')
+                            })
+                            .catch(erro => {
+                                console.log(erro);
 
-                        Alert.alert('usuário casdatrado com sucesso!')
-                        navigation.navigate('Login')
+                            })
+
+
                     }
 
                     console.log(values)
@@ -70,6 +87,14 @@ export default function Register() {
                             placeholderTextColor={Theme.colors.greem}
                         />
                         {errors.user ? (<TextErro>{errors.user}</TextErro>) : (<></>)}
+                        <Label
+                            placeholder="Cadastre seu email"
+                            onChangeText={handleChange('email')}
+                            onBlur={handleBlur('email')}
+                            value={values.email}
+                            placeholderTextColor={Theme.colors.greem}
+                        />
+                        {errors.email ? (<TextErro>{errors.email}</TextErro>) : (<></>)}
                         <Label
                             placeholder="Cadastre a senha"
                             onChangeText={handleChange('password')}

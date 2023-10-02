@@ -45,21 +45,7 @@ export default function Schedule() {
                 showsVerticalScrollIndicator={false}
                 data={dateAluno}
                 keyExtractor={item => item.id}
-                renderItem={({ item }) => (
-                    <TimeConteiner onPress={() => addTime()}>
-
-                        <  ConteinrtTime>
-                            <MatterText2>{Matter(item.matter)}</MatterText2>
-                            <ConteinerTeacher>
-
-                                <TimeText2>{item.start_time} as {item.end_time}</TimeText2>
-                            </ConteinerTeacher>
-                        </  ConteinrtTime>
-
-
-
-                    </TimeConteiner>
-                )}
+                renderItem={({ item }) => <Matter id_matter={item.matter} start_time={item.start_time} end_time={item.end_time} onPress={addTime} />}
 
             />
 
@@ -67,7 +53,5 @@ export default function Schedule() {
     )
 }
 
-function useFocusEffect(arg0: () => void) {
-    throw new Error("Function not implemented.");
-}
+
 
