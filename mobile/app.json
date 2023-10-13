@@ -26,6 +26,19 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 33,
+            "targetSdkVersion": 33,
+            "buildToolsVersion": "33.0.0"
+          }
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "54a1f872-bc8d-4050-a8e1-6be65683e915"

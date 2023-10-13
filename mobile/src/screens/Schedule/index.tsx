@@ -18,8 +18,10 @@ import { AuthContext } from "../../context/Auth";
 import { Theme } from "../../../Thema";
 
 
+
 export default function Schedule() {
     const { navigate } = useNavigation()
+
     const { dateAluno, dateUser, load } = useContext(AuthContextDate)
     const { user, singnOut } = useContext(AuthContext)
 
