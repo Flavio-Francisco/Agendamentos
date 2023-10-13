@@ -124,7 +124,7 @@ export default function Agenda() {
             <ProtuctConteiner >
                 <ProtuctText > Agende seus Horários </ProtuctText>
             </ProtuctConteiner>
-            {load === true ? <ActivityIndicator size={70} color={Theme.colors.greem} /> :
+            {load === true ? <ActivityIndicator size={90} color={Theme.colors.greem} /> :
                 <FlatList
 
                     showsVerticalScrollIndicator={false}
