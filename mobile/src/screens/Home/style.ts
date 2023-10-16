@@ -67,8 +67,8 @@ export const Menu = styled.TouchableOpacity`
 // bootomsheet
 
 export const Conteinerbootomsheet = styled.View`
-  justify-content: center;
   background-color: ${Theme.colors.white100};
+  justify-content: center;
 `;
 export const SingnOut = styled.TouchableOpacity`
   flex-direction: row;
@@ -76,8 +76,8 @@ export const SingnOut = styled.TouchableOpacity`
   width: 65px;
   align-items: center;
   justify-content: center;
-  margin-left: 15px;
   margin-top: 15px;
+  margin-left: 10px;
   background-color: ${Theme.colors.greem};
   gap: 4px;
   border-radius: 7px;
@@ -86,4 +86,34 @@ export const TextSingnOut = styled.Text`
   font-size: 16px;
   text-align: center;
   color: ${Theme.colors.white100};
+`;
+export const ConteinerUser = styled.View`
+  text-align: center;
+  margin-left: 25px;
+  margin-top: 45px;
+`;
+export const UpdatePassword = styled.TouchableOpacity`
+  flex-direction: row;
+  width: 90%;
+  margin-top: 25px;
+  background-color: ${Theme.colors.white100};
+  gap: 10px;
+  border-radius: 7px;
+`;
+export const ConteinerUpdateUser = styled.TouchableOpacity`
+  flex-direction: row;
+  width: 90%;
+  margin-top: 55px;
+  background-color: ${Theme.colors.white100};
+  gap: 10px;
+  border-radius: 7px;
+`;
+export const TextPassword = styled.Text`
+  font-size: 22px;
+  text-align: center;
+  color: ${Theme.colors.greem};
+`;
+export const UpdateUser = styled.Text`
+  font-size: 22px;
+  color: ${Theme.colors.greem};
 `;

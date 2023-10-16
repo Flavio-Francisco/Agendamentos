@@ -9,11 +9,16 @@ import {
     Conteinerbootomsheet,
     SingnOut,
     TextSingnOut,
-    ConteinerList3
+    ConteinerList3,
+    ConteinerUser,
+    UpdatePassword,
+    TextPassword,
+    ConteinerUpdateUser,
+    UpdateUser
 } from "./style";
 
 
-
+import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Card2 from "../../components/Card2/Card2";
@@ -28,6 +33,7 @@ import { BottomSheetComponent } from "../../components/BottomSheetComponent";
 import { AuthContextTeacher } from "../../context/Teacher";
 import Payment from "../../components/MercadoPagoCustomTabs/MercadoPagoCustomTabs";
 import { AuthContextDate } from "../../context/Agenda";
+import CardUser from "../../components/CardUser";
 
 
 
@@ -105,6 +111,19 @@ export default function Home() {
                         <MaterialIcons name="exit-to-app" size={20} color={Theme.colors.white100} />
                         <TextSingnOut>Sair</TextSingnOut>
                     </SingnOut>
+                    <ConteinerUser>
+                        <CardUser />
+                        <ConteinerUpdateUser>
+                            <AntDesign name="edit" size={26} color={Theme.colors.greem} />
+                            <UpdateUser>Atualizar dados cadatrais</UpdateUser>
+                        </ConteinerUpdateUser>
+                        <UpdatePassword>
+                            <AntDesign name="Safety" size={26} color={Theme.colors.greem} />
+                            <TextPassword>Atualize sua senha</TextPassword>
+                        </UpdatePassword>
+
+                    </ConteinerUser>
+
                 </Conteinerbootomsheet>
             </BottomSheetComponent>
         </Conteiner>
