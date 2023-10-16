@@ -27,6 +27,5 @@ export const ConteinrtTime = styled.View`
   padding: 5px;
 `;
 export const ConteinerTeacher = styled.View`
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
 `;

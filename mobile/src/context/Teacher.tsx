@@ -24,7 +24,7 @@ export interface AuthTeacherData {
 
 export interface AuthContextDataProps {
   teacher: AuthTeacherData;
-  getTeacher: (teacher: AuthTeacherData) => void;
+  getTeacher: () => void;
   filterTeacher: AuthTeacherData[];
   matterfindAll: () => void;
   portuguese: AuthTeacherData[];
@@ -158,11 +158,17 @@ export function AuthContextProviderTeacher({ children }: AuthContextProviderProp
 
 
 
-  function getTeacher(teacher: AuthTeacherData) {
-    setTeacher(teacher)
+  async function getTeacher() {
+    await api(`/get`)
+      .then(respose => {
+        setFilterTeacher(respose.data)
+        console.log(filterTeacher);
+
+      })
+
   }
 
-  console.log(teacher);
+
 
 
   return (

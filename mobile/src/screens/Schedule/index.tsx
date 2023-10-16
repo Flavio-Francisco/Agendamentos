@@ -3,11 +3,7 @@ import {
     Conteiner,
     ProtuctConteiner,
     ProtuctText,
-    TimeConteiner,
-    MatterText2,
-    ConteinrtTime,
-    TimeText2,
-    ConteinerTeacher
+
 } from "./styles";
 import { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -26,6 +22,7 @@ export default function Schedule() {
     const { user, singnOut } = useContext(AuthContext)
 
     function addTime() {
+        console.log(dateAluno);
 
         navigate('Home')
     }
@@ -50,7 +47,7 @@ export default function Schedule() {
                     showsVerticalScrollIndicator={false}
                     data={dateAluno}
                     keyExtractor={item => item.id}
-                    renderItem={({ item }) => <Matter id_matter={item.matter} start_time={item.start_time} end_time={item.end_time} onPress={addTime} />}
+                    renderItem={({ item }) => <Matter id_matter={item.matter} start_time={item.start_time} end_time={item.end_time} date={item.date} id_prof={item.prof_id} onPress={addTime} />}
 
                 />
             }

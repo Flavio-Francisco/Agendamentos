@@ -1,10 +1,14 @@
+import { useContext, useEffect, useState } from "react";
 import { ConteinerTeacher, ConteinrtTime, MatterText2, TimeConteiner, TimeText2 } from "./styles";
+import { AuthContextTeacher } from "../../context/Teacher";
 
 
 interface Matte {
   id_matter: string;
   start_time: string;
   end_time: string;
+  date: string;
+  id_prof?: string;
   onPress: () => void;
 
 }
@@ -12,7 +16,8 @@ interface Matte {
 
 export function Matter(props: Matte) {
 
-
+  const { filterTeacher, getTeacher } = useContext(AuthContextTeacher);
+  const [teacherMatter, setTeacherMatter] = useState('')
   var nomeMateria;
 
   switch (props.id_matter) {
@@ -47,13 +52,33 @@ export function Matter(props: Matte) {
 
 
   }
+  const date = new Date(props.date);
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const formattedDate = date.toLocaleDateString('pt-BR', options);
 
+
+
+  useEffect(() => {
+    const filteredTeachers = filterTeacher.filter(item => item.id === props.id_prof);
+
+    if (filteredTeachers.length > 0) {
+      const teacherNames = filteredTeachers.map(item => item.name);
+
+      setTeacherMatter(teacherNames.join(''));
+    } else {
+
+
+      setTeacherMatter('Nenhum professor encontrado');
+    }
+  }, [props.id_prof, filterTeacher]);
   return (
     <TimeConteiner onPress={() => props.onPress()}>
       <ConteinrtTime >
-        <MatterText2>{nomeMateria}</MatterText2>
+        <MatterText2>Matéria: {nomeMateria}</MatterText2>
+        <MatterText2>Professor(a): {teacherMatter}</MatterText2>
         <ConteinerTeacher>
-          <TimeText2>{props.start_time} as {props.end_time}</TimeText2>
+          <TimeText2>Data: {formattedDate}</TimeText2>
+          <TimeText2>Horário {props.start_time} as {props.end_time}</TimeText2>
         </ConteinerTeacher>
       </ConteinrtTime>
     </TimeConteiner>

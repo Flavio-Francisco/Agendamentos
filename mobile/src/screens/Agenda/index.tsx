@@ -1,5 +1,6 @@
 import { View, Text, FlatList, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { AuthContextDate } from '../../context/Agenda';
+
 import {
     Conteiner,
     ProtuctConteiner,
@@ -19,6 +20,7 @@ import { api } from "../../api/api";
 import { AuthContext } from "../../context/Auth";
 import AwesomeAlert from "react-native-awesome-alerts";
 import { Theme } from "../../../Thema";
+import { MaskDate } from "../../components/Mask";
 
 interface Agenda {
     id: string;
@@ -32,6 +34,7 @@ export default function Agenda() {
     const { user, setSaldo } = useContext(AuthContext)
     const { navigate } = useNavigation()
     const [timeSelect, setTimeSelect] = useState('')
+    const [dateSelect, setDateSelect] = useState('')
     const [time, setTime] = useState<Agenda | null>()
     const [showAlert, setShowAlert] = useState<boolean>(false);
     const [timeCommit, setTimeCommit] = useState<boolean>(false);
@@ -72,6 +75,10 @@ export default function Agenda() {
         setTimeSelect(item.id)
         setShowAlert(true)
         console.log(showAlert);
+        const date = new Date(item.date);
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        setDateSelect(date.toLocaleDateString('pt-BR', options));
+        console.log(dateSelect);
     }
 
     function home() {
@@ -101,7 +108,7 @@ export default function Agenda() {
             <AwesomeAlert
                 show={showAlert}
                 title={`Tem certerza que deseja agendar esse horário ${time?.start_time} as ${time?.end_time}`}
-                message={`No dia ${time?.date}`}
+                message={`No dia ${dateSelect} `}
                 contentStyle={{ width: 300, }}
                 closeOnTouchOutside={true}
                 titleStyle={{ fontSize: 20, textAlign: 'center', lineHeight: 30, color: Theme.colors.greem }}
@@ -134,7 +141,8 @@ export default function Agenda() {
                         <TimeConteiner onPress={() => getItem(item)}>
                             {item.id === timeSelect ?
                                 <  ConteinrtTime>
-                                    <MatterText2>{item.date}</MatterText2>
+
+                                    <MatterText2> Data: <MaskDate props={item.date} /></MatterText2>
                                     <ConteinerTeacher>
 
                                         <TimeText2>{item.start_time} as {item.end_time}</TimeText2>
@@ -144,7 +152,7 @@ export default function Agenda() {
                                 :
 
                                 <ConteinrtTime2>
-                                    <MatterText>Data:  {item.date}</MatterText>
+                                    <MatterText>Data: <MaskDate props={item.date} /></MatterText>
 
                                     <ConteinerTeacher>
 

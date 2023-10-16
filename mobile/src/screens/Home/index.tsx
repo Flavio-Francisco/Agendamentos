@@ -35,7 +35,7 @@ import { AuthContextDate } from "../../context/Agenda";
 
 export default function Home() {
 
-    const { matterfindAll } = useContext(AuthContextTeacher)
+    const { matterfindAll, getTeacher } = useContext(AuthContextTeacher)
     const { user, singnOut } = useContext(AuthContext)
     const { dateUser } = useContext(AuthContextDate)
     const [modalVisible, setModalVisible] = useState(false)
@@ -60,7 +60,7 @@ export default function Home() {
     useFocusEffect(
         React.useCallback(() => {
             user
-
+            getTeacher()
             matterfindAll();
             console.log("Saldo da home: ", user.user?.saldo);
         }, [])
