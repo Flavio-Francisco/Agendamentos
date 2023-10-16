@@ -74,11 +74,11 @@ export function Matter(props: Matte) {
   return (
     <TimeConteiner onPress={() => props.onPress()}>
       <ConteinrtTime >
-        <MatterText2>Matéria: {nomeMateria}</MatterText2>
-        <MatterText2>Professor(a): {teacherMatter}</MatterText2>
+        <TimeText2><MatterText2>Matéria: </MatterText2>{nomeMateria}</TimeText2>
+        <TimeText2><MatterText2>Professor(a): </MatterText2>{teacherMatter}</TimeText2>
         <ConteinerTeacher>
-          <TimeText2>Data: {formattedDate}</TimeText2>
-          <TimeText2>Horário {props.start_time} as {props.end_time}</TimeText2>
+          <TimeText2><MatterText2>Data: </MatterText2>{formattedDate}</TimeText2>
+          <TimeText2><MatterText2>Horário </MatterText2>{props.start_time} as {props.end_time}</TimeText2>
         </ConteinerTeacher>
       </ConteinrtTime>
     </TimeConteiner>
