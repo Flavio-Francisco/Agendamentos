@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { api } from "../../api/api";
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { AuthContext } from "../../context/Auth";
+import { ActivityIndicator } from "react-native";
 
 interface MyFormValues {
     user: string;
@@ -31,6 +32,7 @@ export default function UserUpdate() {
     const navigation = useNavigation();
     const FormValues: MyFormValues = { user: '', email: '' };
     const [showAlert, setShowAlert] = useState<boolean>(false);
+    const [loand, setLoand] = useState<boolean>(false);
     const { user } = useContext(AuthContext)
 
 
@@ -66,63 +68,68 @@ export default function UserUpdate() {
                 />
             </ConteinerImage>
 
-            <Title>
-                <Text>Atualizar Usuário </Text>
-            </Title>
-            <Formik
-                initialValues={FormValues}
 
-                onSubmit={values => {
-                    if (values) {
-                        api.patch(`/updateClient/${user.user.id}`, {
-                            name: values.user,
-                            email: values.email
-                        })
-                            .then(respose => {
+            {loand == true ? <ActivityIndicator size={60} color={Theme.colors.greem} /> :
+                <>
+                    <Title>
+                        <Text>Atualizar Usuário </Text>
+                    </Title>
+                    <Formik
+                        initialValues={FormValues}
 
-                                setShowAlert(true);
+                        onSubmit={values => {
+                            setLoand(true)
+                            if (values) {
+                                api.patch(`/updateClient/${user.user.id}`, {
+                                    name: values.user,
+                                    email: values.email
+                                })
+                                    .then(respose => {
 
-                            })
-                            .catch(erro => {
-                                console.log(erro);
+                                        setShowAlert(true);
+                                        setLoand(false)
+                                    })
+                                    .catch(erro => {
+                                        console.log(erro);
 
-                            })
-                    }
+                                    })
+                            }
 
-                    console.log(values)
-                }
+                            console.log(values)
+                        }
 
-                }
-                validationSchema={validationSchema}
-            >
-                {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-                    <>
-                        <Label
-                            placeholder="Digite o novo nome de usuário"
-                            onChangeText={handleChange('user')}
-                            onBlur={handleBlur('user')}
-                            value={values.user}
-                            placeholderTextColor={Theme.colors.greem}
-                        />
-                        {errors.user ? (<TextErro>{errors.user}</TextErro>) : (<></>)}
-                        <Label
-                            placeholder="Digite o novo  email"
-                            onChangeText={handleChange('email')}
-                            onBlur={handleBlur('email')}
-                            value={values.email}
-                            placeholderTextColor={Theme.colors.greem}
-                        />
-                        {errors.email ? (<TextErro>{errors.email}</TextErro>) : (<></>)}
+                        }
+                        validationSchema={validationSchema}
+                    >
+                        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+                            <>
+                                <Label
+                                    placeholder="Digite o novo nome de usuário"
+                                    onChangeText={handleChange('user')}
+                                    onBlur={handleBlur('user')}
+                                    value={values.user}
+                                    placeholderTextColor={Theme.colors.greem}
+                                />
+                                {errors.user ? (<TextErro>{errors.user}</TextErro>) : (<></>)}
+                                <Label
+                                    placeholder="Digite o novo  email"
+                                    onChangeText={handleChange('email')}
+                                    onBlur={handleBlur('email')}
+                                    value={values.email}
+                                    placeholderTextColor={Theme.colors.greem}
+                                />
+                                {errors.email ? (<TextErro>{errors.email}</TextErro>) : (<></>)}
 
-                        <ButtonUpdateUser
-                            onPress={() => handleSubmit()}>
-                            <TextButton>Atualizar</TextButton>
-                        </ButtonUpdateUser>
-                    </>
-                )}
+                                <ButtonUpdateUser
+                                    onPress={() => handleSubmit()}>
+                                    <TextButton>Atualizar</TextButton>
+                                </ButtonUpdateUser>
+                            </>
+                        )}
 
-            </Formik>
-
+                    </Formik>
+                </>
+            }
         </Conteiner>
 
     )

@@ -5,7 +5,7 @@ import { Title, Text, Conteiner, Label, TextButton, ButtomUpdate, TextErro, Cont
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useNavigation } from "@react-navigation/native";
-import { Alert } from "react-native";
+import { ActivityIndicator, Alert } from "react-native";
 import { api } from "../../api/api";
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { AuthContext } from "../../context/Auth";
@@ -39,6 +39,7 @@ export default function UpdatePassWord() {
     const navigation = useNavigation();
     const FormValues: MyFormValues = { currentPassword: '', password: '', passwordConfim: '' };
     const [showAlert, setShowAlert] = useState<boolean>(false);
+    const [loand, setLoand] = useState<boolean>(false);
 
     function hideAlertHandler() {
         setShowAlert(false);
@@ -71,73 +72,76 @@ export default function UpdatePassWord() {
                 />
             </ConteinerImage>
 
-            <Title>
-                <Text>Atualize sua senha</Text>
-            </Title>
-            <Formik
-                initialValues={FormValues}
+            {loand == true ? <ActivityIndicator size={60} color={Theme.colors.greem} /> :
+                <>
+                    <Title>
+                        <Text>Atualize sua senha</Text>
+                    </Title>
+                    <Formik
+                        initialValues={FormValues}
 
-                onSubmit={values => {
-                    console.log(user.user.id)
-                    if (values) {
-                        api.patch(`/updateClient/${user.user.id}`, {
-                            password: values.password
-                        })
-                            .then(respose => {
+                        onSubmit={values => {
+                            setLoand(true)
+                            if (values) {
+                                api.patch(`/updateClient/${user.user.id}`, {
+                                    password: values.password
+                                })
+                                    .then(respose => {
+                                        setLoand(false)
+                                        setShowAlert(true);
 
-                                setShowAlert(true);
+                                    })
+                                    .catch(erro => {
+                                        console.log(erro);
 
-                            })
-                            .catch(erro => {
-                                console.log(erro);
+                                    })
+                            }
 
-                            })
-                    }
+                            console.log(values)
+                        }
 
-                    console.log(values)
-                }
+                        }
+                        validationSchema={validationSchema}
+                    >
+                        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+                            <>
 
-                }
-                validationSchema={validationSchema}
-            >
-                {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-                    <>
+                                <Label
+                                    placeholder="Digite sua senha Atual"
+                                    onChangeText={handleChange('currentPassword')}
+                                    onBlur={handleBlur('currentPassword')}
+                                    value={values.currentPassword}
+                                    placeholderTextColor={Theme.colors.greem}
+                                />
+                                {errors.currentPassword ? (<TextErro>{errors.currentPassword}</TextErro>) : (<></>)}
+                                <Label
+                                    placeholder="Nova senha"
+                                    onChangeText={handleChange('password')}
+                                    onBlur={handleBlur('password')}
+                                    value={values.password}
+                                    secureTextEntry={true}
+                                    placeholderTextColor={Theme.colors.greem}
+                                />
+                                {errors.password ? (<TextErro>{errors.password}</TextErro>) : (<></>)}
+                                <Label
+                                    placeholder="Confime a senha"
+                                    onChangeText={handleChange('passwordConfim')}
+                                    onBlur={handleBlur('passwordConfim')}
+                                    value={values.passwordConfim}
+                                    secureTextEntry={true}
+                                    placeholderTextColor={Theme.colors.greem}
+                                />
+                                {errors.passwordConfim ? (<TextErro>{errors.passwordConfim}</TextErro>) : (<></>)}
+                                <ButtomUpdate
+                                    onPress={() => handleSubmit()}>
+                                    <TextButton>Atuallizar</TextButton>
+                                </ButtomUpdate>
+                            </>
+                        )}
 
-                        <Label
-                            placeholder="Digite sua senha Atual"
-                            onChangeText={handleChange('currentPassword')}
-                            onBlur={handleBlur('currentPassword')}
-                            value={values.currentPassword}
-                            placeholderTextColor={Theme.colors.greem}
-                        />
-                        {errors.currentPassword ? (<TextErro>{errors.currentPassword}</TextErro>) : (<></>)}
-                        <Label
-                            placeholder="Nova senha"
-                            onChangeText={handleChange('password')}
-                            onBlur={handleBlur('password')}
-                            value={values.password}
-                            secureTextEntry={true}
-                            placeholderTextColor={Theme.colors.greem}
-                        />
-                        {errors.password ? (<TextErro>{errors.password}</TextErro>) : (<></>)}
-                        <Label
-                            placeholder="Confime a senha"
-                            onChangeText={handleChange('passwordConfim')}
-                            onBlur={handleBlur('passwordConfim')}
-                            value={values.passwordConfim}
-                            secureTextEntry={true}
-                            placeholderTextColor={Theme.colors.greem}
-                        />
-                        {errors.passwordConfim ? (<TextErro>{errors.passwordConfim}</TextErro>) : (<></>)}
-                        <ButtomUpdate
-                            onPress={() => handleSubmit()}>
-                            <TextButton>Atuallizar</TextButton>
-                        </ButtomUpdate>
-                    </>
-                )}
-
-            </Formik>
-
+                    </Formik>
+                </>
+            }
         </Conteiner>
 
     )
