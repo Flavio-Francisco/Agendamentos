@@ -5,6 +5,7 @@ export declare global {
     interface RootParamList {
       Login: undefined;
       UpdatePassWord: undefined;
+      UserUpdate: undefined;
       PerfilTeacher: {
         avatar: string;
         name: string;

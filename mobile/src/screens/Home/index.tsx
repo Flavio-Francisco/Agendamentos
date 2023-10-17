@@ -112,7 +112,7 @@ export default function Home() {
                     </SingnOut>
                     <ConteinerUser>
                         <CardUser />
-                        <ConteinerUpdateUser>
+                        <ConteinerUpdateUser onPress={() => navigate('UserUpdate')}>
                             <AntDesign name="edit" size={26} color={Theme.colors.greem} />
                             <UpdateUser>Atualizar dados cadatrais</UpdateUser>
                         </ConteinerUpdateUser>

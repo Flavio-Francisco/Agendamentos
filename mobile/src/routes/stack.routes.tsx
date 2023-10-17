@@ -13,6 +13,8 @@ import Home from '../screens/Home';
 import Agenda from '../screens/Agenda';
 import Register from '../screens/register';
 import UpdatePassWord from '../screens/UpdatePassword';
+import { UpdateUser } from './../screens/Home/style';
+import UserUpdate from '../screens/UpdateUser';
 
 
 
@@ -118,6 +120,16 @@ export default function Stack() {
       <Screen
         name='UpdatePassWord'
         component={UpdatePassWord}
+        options={{
+          headerShown: true,
+          headerTitle: '',
+          headerTintColor: Theme.colors.greem,
+
+        }}
+      />
+      <Screen
+        name='UserUpdate'
+        component={UserUpdate}
         options={{
           headerShown: true,
           headerTitle: '',
