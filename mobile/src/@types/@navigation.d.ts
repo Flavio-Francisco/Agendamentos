@@ -4,7 +4,7 @@ export declare global {
   namespace ReactNavigation {
     interface RootParamList {
       Login: undefined;
-
+      UpdatePassWord: undefined;
       PerfilTeacher: {
         avatar: string;
         name: string;
@@ -33,7 +33,7 @@ export declare global {
         rating: number;
       };
       Schedule: undefined;
-      Register:undefined;
+      Register: undefined;
     }
   }
 }

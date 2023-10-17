@@ -43,7 +43,6 @@ export default function Home() {
 
     const { matterfindAll, getTeacher } = useContext(AuthContextTeacher)
     const { user, singnOut } = useContext(AuthContext)
-    const { dateUser } = useContext(AuthContextDate)
     const [modalVisible, setModalVisible] = useState(false)
 
     const { navigate } = useNavigation();
@@ -117,7 +116,7 @@ export default function Home() {
                             <AntDesign name="edit" size={26} color={Theme.colors.greem} />
                             <UpdateUser>Atualizar dados cadatrais</UpdateUser>
                         </ConteinerUpdateUser>
-                        <UpdatePassword>
+                        <UpdatePassword onPress={() => navigate('UpdatePassWord')}>
                             <AntDesign name="Safety" size={26} color={Theme.colors.greem} />
                             <TextPassword>Atualize sua senha</TextPassword>
                         </UpdatePassword>

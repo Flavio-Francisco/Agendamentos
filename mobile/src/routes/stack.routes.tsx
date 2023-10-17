@@ -12,6 +12,7 @@ import Schedule from '../screens/Schedule';
 import Home from '../screens/Home';
 import Agenda from '../screens/Agenda';
 import Register from '../screens/register';
+import UpdatePassWord from '../screens/UpdatePassword';
 
 
 
@@ -80,8 +81,6 @@ export default function Stack() {
         }}
       />
 
-
-
       <Screen
         name='PerfilTeacher'
         component={PerfilTeacher}
@@ -114,11 +113,19 @@ export default function Stack() {
           headerTintColor: Theme.colors.greem,
 
         }}
+
       />
+      <Screen
+        name='UpdatePassWord'
+        component={UpdatePassWord}
+        options={{
+          headerShown: true,
+          headerTitle: '',
+          headerTintColor: Theme.colors.greem,
 
-
+        }}
+      />
 
     </Navigator>
   )
 }
-StarRating

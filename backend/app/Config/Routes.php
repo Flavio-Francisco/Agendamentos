@@ -60,7 +60,7 @@ $routes->get('/uniqueClient/(:any)','Client::uniqueClient/$1'/*,['filter' => 'jw
 $routes->delete('/deleteClient/(:any)','Client::deleteClient/$1'/*,['filter' => 'jwt']*/);
 $routes->patch('/agenda/(:any)','Client::agenda/$1'/*,['filter' => 'jwt']*/);
 $routes->get('/getDateClient/(:any)','Client::getDateClient/$1');
-
+$routes->patch('/updateClient/(:any)','Client::updateClient/$1'/*,['filter' => 'jwt']*/);
 
 
 //materia
