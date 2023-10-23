@@ -127,5 +127,56 @@ class Client extends ResourceController
         }
         
     }
- 
+    public function avatar($id = null) {
+        $request = \Config\Services::request();
+        $avatarBlob = $request->getJSON('avatar'); // Obtém o objeto Blob do JSON
+    
+        if ($avatarBlob) {
+            // Extrair dados relevantes do Blob
+            $blobId = $avatarBlob->_data->blobId;
+            $size = $avatarBlob->_data->size;
+            $type = $avatarBlob->_data->type;
+    
+            // Chame o método extractImageData para obter os dados binários da imagem
+            $imageData = $this->extractImageData($blobId);
+    
+            if ($imageData) {
+                // Insira os dados da imagem no banco de dados
+                $this->model->insert([
+                    'user_id' => $id, // Suponha que você tenha uma coluna 'user_id' para associar a imagem ao usuário
+                    'image_data' => $imageData, // Substitua 'image_data' pelo nome da coluna que armazena os dados binários da imagem
+                ]);
+    
+                $response = [
+                    'status'   => 200,
+                    'error'    => null,
+                    'messages' => [
+                        'success' => 'Imagem inserida com sucesso!!'
+                    ]
+                ];
+    
+                return $this->respondCreated($response);
+            }
+        }
+    }
+    
+    private function extractImageData($blobId) {
+        // Aqui você deve implementar a lógica para extrair os dados binários da imagem
+        // com base no blobId fornecido.
+    
+        // Exemplo hipotético: supondo que você tenha uma tabela "blobs" no banco de dados
+        // onde os dados binários da imagem são armazenados.
+        // Você pode usar o CodeIgniter Query Builder para buscar os dados com base no blobId.
+    
+        $db = \Config\Database::connect();
+        $query = $db->table('aluno')->where('avatar', $blobId)->get();
+    
+        if ($query->getResult()) {
+            // Suponha que 'image_data' seja o nome da coluna que armazena os dados binários da imagem.
+            return $query->getRow()->image_data;
+        }
+    
+        return null;
+    }
+    
 }

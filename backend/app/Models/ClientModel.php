@@ -15,6 +15,7 @@ class ClientModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'id',
+        'avatar',
         'name',
         'email',
         'password',

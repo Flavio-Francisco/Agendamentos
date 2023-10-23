@@ -34,6 +34,7 @@ import { AuthContextTeacher } from "../../context/Teacher";
 import Payment from "../../components/MercadoPagoCustomTabs/MercadoPagoCustomTabs";
 import { AuthContextDate } from "../../context/Agenda";
 import CardUser from "../../components/CardUser";
+import UpdateAvatar from "../../components/UpdateAvatar";
 
 
 
@@ -76,6 +77,7 @@ export default function Home() {
     return (
         <Conteiner>
 
+
             <Conteinertop>
                 <HeaderHome>
                     <Menu onPress={() => setModalVisible(!modalVisible)}>
@@ -86,7 +88,9 @@ export default function Home() {
 
             </Conteinertop>
             <ConteinerList>
+
                 <Card saldo={user.user?.saldo} />
+
             </ConteinerList>
             <ConteinerList2>
 
@@ -94,6 +98,8 @@ export default function Home() {
                 <Card4 name={"Agendar aulas"} navigate={handleNavigate} />
 
             </ConteinerList2>
+
+
             <ConteinerList3 >
 
                 <Payment />

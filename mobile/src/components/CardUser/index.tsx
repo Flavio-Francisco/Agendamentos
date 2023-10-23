@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/Auth";
 import { Avatar, Conteiner, ConteinerAvatar, ConteinerText, EmailUser, NameUser } from "./styles";
+import UpdateAvatar from "../UpdateAvatar";
 
 
 export default function CardUser() {
@@ -9,7 +10,7 @@ export default function CardUser() {
     return (
         <Conteiner>
             <ConteinerAvatar>
-                <Avatar source={require('../../../assets/person.png')} />
+                < UpdateAvatar />
             </ConteinerAvatar>
             <ConteinerText>
                 <NameUser>{user.user.name}</NameUser>

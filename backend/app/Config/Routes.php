@@ -42,7 +42,6 @@ $routes->get('/uniqueUser/(:any)','User::uniqueUser/$1'/*,['filter' => 'jwt']*/)
 //horarios disponiveis
 
 $routes->post('/createtime/(:any)','TimesAvailable::createTime/$1',['filter' => 'jwt']);
-
 $routes->get('/getDate/(:any)','TimesAvailable::getDate/$1');
 $routes->delete('/deleteDate/(:any)','TimesAvailable::deleteDate/$1',['filter' => 'jwt']);
 $routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1',['filter' => 'jwt']);
@@ -61,6 +60,7 @@ $routes->delete('/deleteClient/(:any)','Client::deleteClient/$1'/*,['filter' => 
 $routes->patch('/agenda/(:any)','Client::agenda/$1'/*,['filter' => 'jwt']*/);
 $routes->get('/getDateClient/(:any)','Client::getDateClient/$1');
 $routes->patch('/updateClient/(:any)','Client::updateClient/$1'/*,['filter' => 'jwt']*/);
+$routes->patch('/avatar/(:any)','Client::avatar/$1'/*,['filter' => 'jwt']*/);
 
 
 //materia
