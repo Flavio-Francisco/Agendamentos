@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { ReactNode, SetStateAction, createContext, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from "../api/api";
-import { createClient } from "@supabase/supabase-js";
+
 
 
 
@@ -27,7 +27,6 @@ export interface AuthContextDataProps {
   singnIn: (data: AuthUserData) => Promise<void>;
   singnOut: () => void;
   setSaldo: (newSaldo: number) => void
-  setAvatar: (avatar: Uint8Array) => void
 }
 
 interface AuthContextProviderProps {
@@ -44,7 +43,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const supabaseUrl = "db.qaqxkcmwxckcoxhbapql.supabase.co";
   const supabaseKey = "5cd9987af14f";
 
-  const supabase = createClient(supabaseUrl, supabaseKey);
+
 
   useEffect(() => {
     async function loadStorageData() {
@@ -60,48 +59,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
     loadStorageData();
   }, []);
-
-
-  // function setAvatar(avatar: string) {
-  //   const newAvatar = user;
-  //   newAvatar.user.avatar = avatar
-  //   const imageBlob = new Blob([avatar], { type: 'image/jpeg' });
-  //   const formData = new FormData();
-  //   formData.append('image', imageBlob, 'image.jpg');
-  //   console.log(imageBlob);
-  //   try {
-
-  //     api.patch(`/updateClient/${user.user.id}`, { avatar: formData })
-  //       .then(response => {
-  //         console.log(response.data)
-  //       })
-
-  //   } catch (error) {
-  //     console.log(error);
-
-  //   }
-  //   AsyncStorage.setItem('userData', JSON.stringify(newAvatar));
-
-
-  // }
-
-  async function setAvatar(imageData: Uint8Array): Promise<string | null> {
-    const { data, error, } = await supabase.storage
-      .from("avatar")
-      .upload("avatar.jpg", imageData);
-
-    if (error) {
-      console.error("Erro ao fazer upload da imagem:", error);
-      return null;
-    } else {
-
-      console.log("Imagem enviada com sucesso. URL pública:");
-      return "" || null;
-    }
-  }
-
-
-
 
 
   async function singnIn(data: AuthUserData) {
@@ -157,7 +114,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         user,
         singnIn,
         setSaldo,
-        setAvatar
+
       }}
     >
 
