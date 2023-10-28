@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 
 
+use App\Models\Assessment;
 use App\Models\UserModel;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
@@ -13,10 +14,11 @@ class User extends ResourceController
     use ResponseTrait;
 
     protected $model;
+    protected $ratingModel ;
     public function __construct(){
 
         $this->model = new UserModel(); 
-
+        $this->ratingModel = new Assessment();
     }
     public function create()
     {
@@ -43,25 +45,51 @@ class User extends ResourceController
         return $this->failNotFound('Nenhum dado encontrado com id '.$id); 
     }
 
-    public function updateUser($id = null){
+    public function updateUser($id_prof = null){
 
         $data = $this->request->getJSON();
 
-        if($this->model->find($id)){
-    
-            $this->model->update($id,$data);
-             $response = [
-               'status'   => 200,
-               'error'    => null,
-               'messages' => [
-                   'success' => 'Dados Atualizados com sucesso!!'
-               ]
-               ];
-           
-           return$this->respondUpdated($response);
+        $starBody=[
+            'id_prof'=> $id_prof,
+            'star'=> $data->star
+        ];
+      
+
+       if($this->model->find($id_prof)){
+   
+
+           if ( $this->ratingModel->save( $starBody)) {
+
+              $totalStars = 0;
+
+              $ratings = $this->ratingModel->getRatingsById($id_prof);
+
+              foreach ($ratings as $rating) {
+               // Converte o valor de "star" para um número antes de somar
+                 $totalStars += (int) $rating['star'];
+             }
+                  
+                 $flaot = $totalStars / count($ratings);
+                 $average = round($flaot);
+                
+
+                  $star = [
+                     'star' => $average
+                 ];
+                
+                 if ($star) {
+                    $result = $this->model->where('id', $id_prof)->set($star)->first();
+                    
+                    return $this->response->setJSON($result);
+                 }
+                      
+            } else {
+                return json_encode(['error' => 'Usuário não encontrado']);
+          }
+
        }
-       return $this->failNotFound('Nenhum dado encontrado com id '.$id); 
-        
+      return $this->failNotFound('Nenhum dado encontrado com id '.$id_prof); 
+     
     }
 
     public function delete($id = null){

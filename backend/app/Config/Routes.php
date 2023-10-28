@@ -34,7 +34,7 @@ $routes->get('/test','Home::index');
 
               
 $routes->post('/create','User::create',['filter' => 'jwt']); 
-$routes->patch('/update/(:any)','User::updateUser/$1',['filter' => 'jwt']);
+$routes->patch('/update/(:any)','User::updateUser/$1'/*,['filter' => 'jwt']*/);
 $routes->delete('/delete/(:any)','User::delete/$1',['filter' => 'jwt']);
 $routes->get('/get','User::get'/*,['filter' => 'jwt']*/); 
 $routes->get('/uniqueUser/(:any)','User::uniqueUser/$1'/*,['filter' => 'jwt']*/);
@@ -68,8 +68,11 @@ $routes->get('/matte/(:any)','User::matte/$1');
 
 // datas recoretes
 
-
 $routes->get('/rest', 'DateController::rest');
+
+//media de estrelas
+
+$routes->get('/star/(:any)','AssessmentController::stars/$1');
 
 // mercado pago
 

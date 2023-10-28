@@ -66,7 +66,7 @@ export default function Home() {
     useFocusEffect(
         React.useCallback(() => {
             user
-            getTeacher()
+
             matterfindAll();
             console.log("Saldo da home: ", user.user?.saldo);
         }, [])
