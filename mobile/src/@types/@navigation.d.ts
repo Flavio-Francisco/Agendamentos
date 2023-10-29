@@ -29,6 +29,7 @@ export declare global {
       };
 
       StarRating: {
+        id: string;
         avatar: string;
         name: string;
         rating: number;

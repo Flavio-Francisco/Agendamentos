@@ -78,9 +78,9 @@ class User extends ResourceController
                  ];
                 
                  if ($star) {
-                    $result = $this->model->where('id', $id_prof)->set($star)->first();
+                     $this->model->where('id', $id_prof)->set($star)->first();
                     
-                    return $this->response->setJSON($result);
+                    return ("Obrigado por sua avaliação");
                  }
                       
             } else {

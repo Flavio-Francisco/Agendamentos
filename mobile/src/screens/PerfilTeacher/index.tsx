@@ -15,6 +15,7 @@ import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import StarFixer from './../../components/StarFixer/index';
 import { Theme } from "../../../Thema";
 
+
 type RootStackParamList = {
     PerfilTeacher: {
         id: string;
@@ -31,7 +32,7 @@ export function PerfilTeacher() {
     const navigation = useNavigation();
     const [ratin, setRating] = useState(0);
     const route = useRoute<PerfilTeacherParams>();
-    const { avatar, name, modal, rating } = route.params;
+    const { avatar, name, modal, rating, id } = route.params;
 
     const handleRatingPress = (newRating: number) => {
         setRating(newRating);
@@ -39,14 +40,18 @@ export function PerfilTeacher() {
     };
     function handleNavigate() {
         navigation.navigate('StarRating', {
-            avatar: avatar,
+            id: id,
+            avatar: '../../../assets/person.png',
             name: name,
             rating: rating,
         })
     }
+
+
+
     function handleAgenda() {
         navigation.navigate('Agenda')
-            
+
     }
 
     return (
@@ -63,8 +68,8 @@ export function PerfilTeacher() {
                 <ConteinerName>
                     <NameTeacher>{name}</NameTeacher>
                 </ConteinerName>
-                <InputLesson 
-                onPress={()=>handleAgenda()}
+                <InputLesson
+                    onPress={() => handleAgenda()}
                 >
                     <Fontisto name="date" size={24} color={Theme.colors.white100} />
                     <TextTeacher>Agende sua aula</TextTeacher>
