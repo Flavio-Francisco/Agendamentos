@@ -27,6 +27,7 @@ export interface AuthContextDataProps {
   singnIn: (data: AuthUserData) => Promise<void>;
   singnOut: () => void;
   setSaldo: (newSaldo: number) => void
+  setAvatar: (avatar: string) => void
 }
 
 interface AuthContextProviderProps {
@@ -40,10 +41,6 @@ export const AuthContext = createContext({} as AuthContextDataProps);
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<AuthUserData>({} as AuthUserData);
-  const supabaseUrl = "db.qaqxkcmwxckcoxhbapql.supabase.co";
-  const supabaseKey = "5cd9987af14f";
-
-
 
   useEffect(() => {
     async function loadStorageData() {
@@ -84,6 +81,18 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
     }
   }
+
+  function setAvatar(avatar: string) {
+    try {
+      const userData = user;
+      userData.user.avatar = avatar;
+      AsyncStorage.setItem('userData', JSON.stringify(userData));
+
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
   function singnOut() {
 
     AsyncStorage.removeItem('userData').catch((error) => {
@@ -114,7 +123,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         user,
         singnIn,
         setSaldo,
-
+        setAvatar,
       }}
     >
 

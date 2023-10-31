@@ -10,11 +10,11 @@ export default function CardUser() {
     return (
         <Conteiner>
             <ConteinerAvatar>
-                < UpdateAvatar />
+
             </ConteinerAvatar>
             <ConteinerText>
-                <NameUser>{user.user.name}</NameUser>
-                <EmailUser>{user.user.email}</EmailUser>
+                <NameUser>{user.user?.name}</NameUser>
+                <EmailUser>{user.user?.email}</EmailUser>
             </ConteinerText>
         </Conteiner>
     )

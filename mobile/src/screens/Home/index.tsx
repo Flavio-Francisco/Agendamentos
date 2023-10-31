@@ -14,7 +14,9 @@ import {
     UpdatePassword,
     TextPassword,
     ConteinerUpdateUser,
-    UpdateUser
+    UpdateUser,
+    AvatarUserHome,
+    ConteinerAvatar
 } from "./style";
 
 
@@ -25,7 +27,6 @@ import Card2 from "../../components/Card2/Card2";
 import Card from "../../components/Card/Card";
 import Card4 from "../../components/Card4/Card4";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { Alert } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Theme } from "../../../Thema";
 import { AuthContext } from "../../context/Auth";
@@ -35,6 +36,7 @@ import Payment from "../../components/MercadoPagoCustomTabs/MercadoPagoCustomTab
 import { AuthContextDate } from "../../context/Agenda";
 import CardUser from "../../components/CardUser";
 import UpdateAvatar from "../../components/UpdateAvatar";
+import { Image } from "react-native";
 
 
 
@@ -42,7 +44,7 @@ import UpdateAvatar from "../../components/UpdateAvatar";
 
 export default function Home() {
 
-    const { matterfindAll, getTeacher } = useContext(AuthContextTeacher)
+    const { matterfindAll } = useContext(AuthContextTeacher)
     const { user, singnOut } = useContext(AuthContext)
     const [modalVisible, setModalVisible] = useState(false)
 
@@ -76,13 +78,16 @@ export default function Home() {
     return (
         <Conteiner>
 
-
             <Conteinertop>
                 <HeaderHome>
+
                     <Menu onPress={() => setModalVisible(!modalVisible)}>
                         <Feather name="menu" size={30} color={Theme.colors.white100} />
                     </Menu>
-                    <TitleHome> Olá! {user.user?.name}</TitleHome>
+                    <ConteinerAvatar >
+                        <AvatarUserHome source={{ uri: user.user?.avatar }} />
+                        <TitleHome> Olá! {user.user?.name}</TitleHome>
+                    </ConteinerAvatar>
                 </HeaderHome>
 
             </Conteinertop>
@@ -116,18 +121,16 @@ export default function Home() {
                         <TextSingnOut>Sair</TextSingnOut>
                     </SingnOut>
                     <ConteinerUser>
-                        <CardUser />
+                        <UpdateAvatar />
                         <ConteinerUpdateUser onPress={() => navigate('UserUpdate')}>
                             <AntDesign name="edit" size={26} color={Theme.colors.greem} />
-                            <UpdateUser>Atualizar dados cadatrais</UpdateUser>
+                            <UpdateUser>Atualizar dados cadastrais</UpdateUser>
                         </ConteinerUpdateUser>
                         <UpdatePassword onPress={() => navigate('UpdatePassWord')}>
                             <AntDesign name="Safety" size={26} color={Theme.colors.greem} />
                             <TextPassword>Atualize sua senha</TextPassword>
                         </UpdatePassword>
-
                     </ConteinerUser>
-
                 </Conteinerbootomsheet>
             </BottomSheetComponent>
         </Conteiner>

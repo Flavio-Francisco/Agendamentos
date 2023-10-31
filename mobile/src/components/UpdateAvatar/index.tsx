@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Button, Image, View, Platform, Text } from 'react-native';
+import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { AvatarUser, ButtomAvatar, Conteiner, ViewButtom } from './styles';
 import { AuthContext } from '../../context/Auth';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Theme } from '../../../Thema';
+import { api } from '../../api/api';
 
 export default function UpdateAvatar() {
-    const [image, setImage] = useState<string>('');
-    const { setAvatar, user } = useContext(AuthContext)
-
+    const [image, setImage] = useState<string>('b');
+    const { user, setAvatar } = useContext(AuthContext);
 
     const pickImage = async () => {
-        console.log(user.user.avatar);
+
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
@@ -20,28 +20,31 @@ export default function UpdateAvatar() {
             quality: 1,
         });
 
-
         if (result && result.assets) {
             setImage(result.assets[0].uri);
-            const imageArray = await convertToUint8Array(result.assets[0].uri);
-            // Envie a imagem para a função de upload
-            setAvatar(imageArray);
-            console.log("Deu certo");
+            console.log(result.assets[0].uri);
+            api.patch(`/updateClient/${user.user.id}`, {
+                avatar: result.assets[0].uri
+            })
+                .then(response => {
+                    if (result && result.assets && response.data) {
+                        setAvatar(String(result.assets[0].uri));
+                        console.log(response.data);
+
+                    }
+                }
+                )
         }
     };
-    const convertToUint8Array = async (filePath: string): Promise<Uint8Array> => {
-        const response = await fetch(filePath);
-        const blob = await response.blob();
-        const arrayBuffer = await blob.arrayBuffer();
-        const uint8Array = new Uint8Array(arrayBuffer);
-        return uint8Array;
-    };
+
+
+
 
     return (
-        <Conteiner >
+        <Conteiner>
 
-            {user.user.avatar == null ?
-                <AvatarUser source={{ uri: user.user.avatar }} />
+            {image == 'b' ?
+                <AvatarUser source={{ uri: user.user?.avatar }} />
                 :
                 <AvatarUser source={{ uri: image }} />
             }
