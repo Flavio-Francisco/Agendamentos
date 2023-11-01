@@ -4,9 +4,10 @@ import { Foundation, Fontisto } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { Formik } from 'formik';
 import * as Yup from "yup";
+import * as LocalAuthentication from 'expo-local-authentication';
 import { Theme } from "../../../Thema";
 import { api } from "../../api/api";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/Auth";
 import { AuthContextTeacher } from "../../context/Teacher";
 
@@ -28,11 +29,42 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Login() {
+
   const { navigate } = useNavigation();
-  const { singnIn } = useContext(AuthContext)
+  const { user, singnIn } = useContext(AuthContext)
   const { matterfindAll } = useContext(AuthContextTeacher)
 
   const FormValues: MyFormValues = { user: '', password: '' };
+  // impmlementado biometria
+  async function verifyAuth() {
+    if (user.token === undefined || user.token === '') {
+      console.log('não tem token');
+    } else {
+      hadleAuth()
+    }
+
+  }
+  async function hadleAuth() {
+
+    const isBiometric = await LocalAuthentication.isEnrolledAsync()
+    if (isBiometric === false) {
+      console.log("N biometria encontrada");
+    }
+    const auth = await LocalAuthentication.authenticateAsync({
+      promptMessage: 'Entre com digital',
+      fallbackLabel: 'Digital não encontrada',
+
+    })
+
+
+  }
+
+
+  useEffect(() => {
+    console.log('isso é o token ', user.token);
+
+    verifyAuth()
+  }, [])
 
   return (
     <ConteinerLogin>

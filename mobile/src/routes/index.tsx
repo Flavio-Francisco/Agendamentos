@@ -14,10 +14,7 @@ export default function Routes() {
   return (
 
     <NavigationContainer>
-
-      {user ? <Stack /> : < Tab />}
-
-
+      <Stack />
     </NavigationContainer>
 
   );

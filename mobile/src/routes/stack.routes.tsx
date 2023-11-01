@@ -28,14 +28,6 @@ export default function Stack() {
   return (
     <Navigator>
       <Screen
-        name='Home'
-        component={Home}
-        options={{
-
-          headerShown: false
-        }}
-      />
-      <Screen
         name='Login'
         component={Login}
         options={{
@@ -44,6 +36,15 @@ export default function Stack() {
         }}
 
       />
+      <Screen
+        name='Home'
+        component={Home}
+        options={{
+
+          headerShown: false
+        }}
+      />
+
       <Screen
         name='Register'
         component={Register}
