@@ -121,7 +121,7 @@ export default function Home() {
                         <TextSingnOut>Sair</TextSingnOut>
                     </SingnOut>
                     <ConteinerUser>
-                        <UpdateAvatar />
+                        <CardUser />
                         <ConteinerUpdateUser onPress={() => navigate('UserUpdate')}>
                             <AntDesign name="edit" size={26} color={Theme.colors.greem} />
                             <UpdateUser>Atualizar dados cadastrais</UpdateUser>
