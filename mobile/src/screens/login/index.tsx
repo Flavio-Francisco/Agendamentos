@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import * as LocalAuthentication from 'expo-local-authentication';
 import { Theme } from "../../../Thema";
 import { api } from "../../api/api";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/Auth";
 import { AuthContextTeacher } from "../../context/Teacher";
 
@@ -35,36 +35,51 @@ export default function Login() {
   const { matterfindAll } = useContext(AuthContextTeacher)
 
   const FormValues: MyFormValues = { user: '', password: '' };
+  const [login, setLogin] = useState(true)
+
   // impmlementado biometria
   async function verifyAuth() {
+
+
     if (user.token === undefined || user.token === '') {
       console.log('não tem token');
     } else {
       hadleAuth()
+      setLogin(true)
     }
 
   }
   async function hadleAuth() {
+    setLogin(true)
+    if (login === true) {
+      let isBiometric = await LocalAuthentication.isEnrolledAsync()
+      if (isBiometric === false) {
+        console.log("N biometria encontrada");
+      }
+      const auth = await LocalAuthentication.authenticateAsync({
+        promptMessage: 'Entre com digital',
+        fallbackLabel: 'Digital não encontrada',
 
-    const isBiometric = await LocalAuthentication.isEnrolledAsync()
-    if (isBiometric === false) {
-      console.log("N biometria encontrada");
+      })
+      const { success } = auth
+
+      if (success === true) {
+        navigate('Home')
+        setLogin(false)
+      }
+      console.log('isso é o success', success);
+      setLogin(false)
     }
-    const auth = await LocalAuthentication.authenticateAsync({
-      promptMessage: 'Entre com digital',
-      fallbackLabel: 'Digital não encontrada',
-
-    })
-
-
   }
 
-
   useEffect(() => {
-    console.log('isso é o token ', user.token);
-
     verifyAuth()
-  }, [])
+    if (user.token === undefined || user.token === '') {
+
+    } else {
+      setLogin(true)
+    }
+  }, [user.token])
 
   return (
     <ConteinerLogin>
@@ -125,7 +140,10 @@ export default function Login() {
             />
             {errors.password ? (<TextErro>{errors.password}</TextErro>) : (<></>)}
             <ButtomLogin
-              onPress={() => handleSubmit()}
+              onPress={() => {
+                handleSubmit();
+
+              }}
             >
               <TextButton>Entrar</TextButton>
             </ButtomLogin>
