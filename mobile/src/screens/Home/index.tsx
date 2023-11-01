@@ -38,6 +38,7 @@ import CardUser from "../../components/CardUser";
 import UpdateAvatar from "../../components/UpdateAvatar";
 import { Image } from "react-native";
 
+console.warn = () => { };
 
 
 

@@ -1,7 +1,7 @@
 
 import { TextErro, ButtomLogin, ConteinerLogin, Label, TextButton, TextLogin, TextLabel, ButtomIcons, ViewHorizontal, HorizontalLine, TextHorizontal, ConteinerImage, IconApp, TextLink } from "./style";
 import { Foundation, Fontisto } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Formik } from 'formik';
 import * as Yup from "yup";
 import * as LocalAuthentication from 'expo-local-authentication';
@@ -10,6 +10,7 @@ import { api } from "../../api/api";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/Auth";
 import { AuthContextTeacher } from "../../context/Teacher";
+import React from "react";
 
 
 
@@ -71,15 +72,13 @@ export default function Login() {
       setLogin(false)
     }
   }
+  useFocusEffect(
+    React.useCallback(() => {
+      verifyAuth()
 
-  useEffect(() => {
-    verifyAuth()
-    if (user.token === undefined || user.token === '') {
+    }, [user])
+  );
 
-    } else {
-      setLogin(true)
-    }
-  }, [user.token])
 
   return (
     <ConteinerLogin>
