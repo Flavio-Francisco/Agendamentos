@@ -7,23 +7,26 @@ import { StatusBar } from 'expo-status-bar';
 import { Theme } from './Thema';
 import { AuthContextProviderDate } from './src/context/Agenda';
 import { AuthContextProviderTeacher } from './src/context/Teacher';
+import { PaymentContextProvider } from './src/context/payments';
 
 
 export default function App() {
   return (
-    <AuthContextProviderTeacher>
-      <AuthContextProviderDate>
-        <AuthContextProvider>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <StatusBar
-              backgroundColor={Theme.colors.greem}
-              style='light'
-            />
-            <Routes />
-          </GestureHandlerRootView>
-        </AuthContextProvider>
-      </AuthContextProviderDate>
-    </AuthContextProviderTeacher>
+    <PaymentContextProvider>
+      <AuthContextProviderTeacher>
+        <AuthContextProviderDate>
+          <AuthContextProvider>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <StatusBar
+                backgroundColor={Theme.colors.greem}
+                style='light'
+              />
+              <Routes />
+            </GestureHandlerRootView>
+          </AuthContextProvider>
+        </AuthContextProviderDate>
+      </AuthContextProviderTeacher>
+    </PaymentContextProvider>
   );
 }
 

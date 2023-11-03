@@ -26,11 +26,11 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => 'localhost',
-        'username'     => '',
-        'password'     => '',
-        'database'     => '',
-        'DBDriver'     => 'MySQLi',
+        'hostname'     => 'db.qaqxkcmwxckcoxhbapql.supabase.co',
+        'username'     => 'postgres',
+        'password'     => '5cd9987af14f',
+        'database'     => 'postgres',
+        'DBDriver'     => 'postgres',
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,
@@ -41,7 +41,7 @@ class Database extends Config
         'compress'     => false,
         'strictOn'     => false,
         'failover'     => [],
-        'port'         => 3306,
+        'port'         => 5432,
         'numberNative' => false,
     ];
 
@@ -50,25 +50,24 @@ class Database extends Config
      * running PHPUnit database tests.
      */
     public array $tests = [
-        'DSN'         => '',
-        'hostname'    => '127.0.0.1',
-        'username'    => '',
-        'password'    => '',
-        'database'    => ':memory:',
-        'DBDriver'    => 'SQLite3',
-        'DBPrefix'    => 'db_',  // Needed to ensure we're working correctly with prefixes live. DO NOT REMOVE FOR CI DEVS
-        'pConnect'    => false,
-        'DBDebug'     => true,
-        'charset'     => 'utf8',
-        'DBCollat'    => 'utf8_general_ci',
-        'swapPre'     => '',
-        'encrypt'     => false,
-        'compress'    => false,
-        'strictOn'    => false,
-        'failover'    => [],
-        'port'        => 3306,
-        'foreignKeys' => true,
-        'busyTimeout' => 1000,
+        'DSN'          => '',
+        'hostname'     => 'db.qaqxkcmwxckcoxhbapql.supabase.co',
+        'username'     => 'postgres',
+        'password'     => '5cd9987af14f',
+        'database'     => 'postgres',
+        'DBDriver'     => 'postgres',
+        'DBPrefix'     => '',
+        'pConnect'     => false,
+        'DBDebug'      => true,
+        'charset'      => 'utf8',
+        'DBCollat'     => 'utf8_general_ci',
+        'swapPre'      => '',
+        'encrypt'      => false,
+        'compress'     => false,
+        'strictOn'     => false,
+        'failover'     => [],
+        'port'         => 5432,
+        'numberNative' => false,
     ];
 
     public function __construct()

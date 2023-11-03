@@ -1,21 +1,36 @@
-import { Fontisto } from '@expo/vector-icons';
+
+import {
+    StyleSheet,
+    Button,
+    View
+} from "react-native";
 import { openBrowserAsync } from "expo-web-browser";
-import { Button, TextCard, ConteinerTask } from "./style";
-import { Theme } from '../../../Thema';
 
 
-
-export default function Payment() {
+export default function ExpoWebBrowserExample(url: string) {
+    const Url = 'https://agendamentos-n3ayjix5f-flavio-francisco.vercel.app/mercadoPago.html';
     return (
-        < Button
-            onPress={
-                () => openBrowserAsync('https://agendamentos-n3ayjix5f-flavio-francisco.vercel.app/mercadoPago.html')
-            }>
-            <ConteinerTask>
-                <TextCard>Pagamentos</TextCard>
-                <Fontisto name="credit-card" size={24} color={Theme.colors.greem} />
-            </ConteinerTask>
-        </Button>
 
+        <View style={styles.container} >
+
+            < Button title="Open Browser"
+                onPress={
+                    () => openBrowserAsync(Url)
+                } />
+        </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+});
+
+
+// <Fontisto name="credit-card" size={24} color={Theme.colors.greem} />
+
+

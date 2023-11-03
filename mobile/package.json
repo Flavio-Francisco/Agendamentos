@@ -24,7 +24,9 @@
     "expo": "~49.0.13",
     "expo-build-properties": "~0.8.3",
     "expo-checkbox": "~2.4.0",
+    "expo-file-system": "~15.4.4",
     "expo-image-picker": "~14.3.2",
+    "expo-local-authentication": "~13.4.1",
     "expo-notifications": "~0.20.1",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
@@ -53,9 +55,7 @@
     "react-native-vector-icons": "^10.0.0",
     "react-native-web": "~0.19.6",
     "styled-components": "^6.0.7",
-    "yup": "^1.2.0",
-    "expo-file-system": "~15.4.4",
-    "expo-local-authentication": "~13.4.1"
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

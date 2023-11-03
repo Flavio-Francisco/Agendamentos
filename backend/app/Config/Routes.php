@@ -80,7 +80,8 @@ $routes->post('payment/receive', 'PaymentController::receivePayment');
 $routes->post('payment/pix','Pagamento::pix');
 $routes->post('payment/preference','Pagamento::preference');
 $routes->get('test','PaymentController::index'); 
-$routes->post('\pix','PaymentController::paymentpix'); 
+$routes->get('/webhook/mercadopago','Pagamento::pix'); 
+$routes->post('/getpix','Pagamento::get'); 
 /*
  * --------------------------------------------------------------------
  * Additional Routing
