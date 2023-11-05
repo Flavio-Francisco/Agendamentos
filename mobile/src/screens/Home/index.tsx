@@ -19,7 +19,7 @@ import {
     ConteinerAvatar
 } from "./style";
 
-
+import { SimpleLineIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -32,11 +32,8 @@ import { Theme } from "../../../Thema";
 import { AuthContext } from "../../context/Auth";
 import { BottomSheetComponent } from "../../components/BottomSheetComponent";
 import { AuthContextTeacher } from "../../context/Teacher";
-import Payment from "../../components/MercadoPagoCustomTabs/MercadoPagoCustomTabs";
-import { AuthContextDate } from "../../context/Agenda";
 import CardUser from "../../components/CardUser";
-import UpdateAvatar from "../../components/UpdateAvatar";
-import { Image } from "react-native";
+
 
 console.warn = () => { };
 
@@ -105,9 +102,9 @@ export default function Home() {
             </ConteinerList2>
 
 
-            <ConteinerList3 >
-
-                <Payment />
+            <ConteinerList3 onPress={() => navigate('Payment')} >
+                <SimpleLineIcons name="credit-card" size={30} color={Theme.colors.greem} />
+                <TextPassword>Pagamentos</TextPassword>
             </ConteinerList3>
 
 

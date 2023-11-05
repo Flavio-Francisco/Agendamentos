@@ -1,62 +1,24 @@
 import React, { useEffect } from "react";
 import { ReactNode, SetStateAction, createContext, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { apiMercadoPago } from "../api/api";
+import { openBrowserAsync } from "expo-web-browser";
 
 
 export interface CreatePayment {
-  additional_info: {
-    items: [
-      {
-        id: string;
-        title: string;
-        description: string;
-        picture_url: string;
-        category_id: string;
-        quantity: number;
-        unit_price: number;
-        type: string;
-        event_date: string;
-        category_descriptor: {
-          passenger: {},
-          route: {}
-        }
-      }
-    ],
-    payer: {
-      first_name: string;
-      last_name: string;
-      phone: {
-        area_code: number;
-        number: number;
-      },
-      address: {}
-    },
-    shipments: {
-      receiver_address: {
-        zip_code: string;
-        state_name: string;
-        city_name: string;
-        street_name: string;
-        street_number: string;
-      }
+
+  items: [
+    {
+      title: 'Comprar Creditos';
+      description: "horas aulas";
+      picture_url: "http://www.myapp.com/myimage.jpg";
+      category_id: "Aulas";
+      quantity: 1;
+      currency_id: "BRL";
+      unit_price: number;
+      notification_url: null | string;
     }
-  },
-  description: string;
-  external_reference: string;
-  installments: number;
-  metadata: {},
-  payer: {
-    entity_type: string;
-    type: string;
-    email: string;
-    identification: {
-      type: string;
-      number: string;
-    }
-  },
-  payment_method_id: string;
-  transaction_amount: number;
+  ],
 }
 
 export interface ResposePayment {
@@ -262,6 +224,7 @@ export interface ResposePayment {
 export interface PaymentContextDataProps {
   createPayment: CreatePayment;
   resposePaymment: ResposePayment;
+  createPrefence: (valor: string) => void;
 }
 
 interface PaymentContextProviderProps {
@@ -276,6 +239,7 @@ export const AuthContextPayment = createContext({} as PaymentContextDataProps);
 export function PaymentContextProvider({ children }: PaymentContextProviderProps) {
   const [createPayment, setCreatePaymet] = useState<CreatePayment>({} as CreatePayment);
   const [resposePaymment, setResposePaymment] = useState<ResposePayment>({} as ResposePayment);
+
 
   useEffect(() => {
     async function loadStorageDataPayment() {
@@ -300,11 +264,52 @@ export function PaymentContextProvider({ children }: PaymentContextProviderProps
     loadStorageDataPayment();
   }, []);
 
+
+  async function createPrefence(valor: string) {
+    if (valor) {
+      function removeMaskedNumber(input: string) {
+
+        const digitsOnly = input.replace(/\D/g, '');
+
+        const number = parseFloat(digitsOnly);
+
+        return number;
+      }
+      console.log(Number(removeMaskedNumber(valor)));
+
+      apiMercadoPago.post('', {
+        items: [
+          {
+            title: 'Comprar Creditos',
+            description: "horas aulas",
+            picture_url: "http://www.myapp.com/myimage.jpg",
+            category_id: "Aulas",
+            quantity: 1,
+            currency_id: "BRL",
+            unit_price: Number(removeMaskedNumber(valor)),
+            notification_url: "http://10.0.0.2:8080/webhook/mercadopago"
+          }
+        ],
+      }
+      )
+        .then(respose => {
+          const { init_point } = respose.data
+          console.log(init_point);
+          openBrowserAsync(init_point)
+        })
+        .catch(erro => {
+          console.log(erro);
+
+        })
+    }
+  }
+
   return (
     <AuthContextPayment.Provider
       value={{
         createPayment,
-        resposePaymment
+        resposePaymment,
+        createPrefence
 
       }}
     >

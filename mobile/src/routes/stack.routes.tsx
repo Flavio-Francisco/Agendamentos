@@ -15,6 +15,7 @@ import Register from '../screens/register';
 import UpdatePassWord from '../screens/UpdatePassword';
 import { UpdateUser } from './../screens/Home/style';
 import UserUpdate from '../screens/UpdateUser';
+import Payment from '../screens/payment';
 
 
 
@@ -131,6 +132,16 @@ export default function Stack() {
       <Screen
         name='UserUpdate'
         component={UserUpdate}
+        options={{
+          headerShown: true,
+          headerTitle: '',
+          headerTintColor: Theme.colors.greem,
+
+        }}
+      />
+      <Screen
+        name='Payment'
+        component={Payment}
         options={{
           headerShown: true,
           headerTitle: '',

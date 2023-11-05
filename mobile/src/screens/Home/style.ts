@@ -39,10 +39,17 @@ export const ConteinerList2 = styled.View`
   gap: 17px;
 `;
 
-export const ConteinerList3 = styled.View`
-  height: 25%;
+export const ConteinerList3 = styled.TouchableOpacity`
+  flex-direction: row;
+  height: 130px;
+  width: 90%;
+  align-items: center;
   justify-content: center;
+  border: 1px ${Theme.colors.greem};
+  border-radius: 15px;
   background-color: ${Theme.colors.white100};
+  margin-bottom: 80px;
+  gap: 25px;
 `;
 export const HeaderHome = styled.View`
   height: 30%;

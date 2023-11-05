@@ -46,6 +46,7 @@
     "react-native-gesture-handler": "~2.12.0",
     "react-native-localize": "^3.0.2",
     "react-native-mask-input": "^1.2.3",
+    "react-native-masked-text": "^1.13.0",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-paper": "^5.9.1",
     "react-native-reanimated": "~3.3.0",
@@ -55,6 +56,7 @@
     "react-native-vector-icons": "^10.0.0",
     "react-native-web": "~0.19.6",
     "styled-components": "^6.0.7",
+    "text-mask-addons": "^3.8.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {

@@ -10,6 +10,8 @@ import { AuthContextProviderTeacher } from './src/context/Teacher';
 import { PaymentContextProvider } from './src/context/payments';
 
 
+
+
 export default function App() {
   return (
     <PaymentContextProvider>

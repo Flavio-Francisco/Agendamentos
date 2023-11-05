@@ -1,6 +1,4 @@
 export declare global {
-  import { CreateCategory } from "./../screens/CreateCategory/index";
-
   namespace ReactNavigation {
     interface RootParamList {
       Login: undefined;
@@ -36,6 +34,7 @@ export declare global {
       };
       Schedule: undefined;
       Register: undefined;
+      Payment: undefined;
     }
   }
 }
