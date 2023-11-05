@@ -33,7 +33,7 @@ export default function UserUpdate() {
     const FormValues: MyFormValues = { user: '', email: '' };
     const [showAlert, setShowAlert] = useState<boolean>(false);
     const [loand, setLoand] = useState<boolean>(false);
-    const { user } = useContext(AuthContext)
+    const { user, setName, setEmail } = useContext(AuthContext)
 
 
 
@@ -85,7 +85,8 @@ export default function UserUpdate() {
                                     email: values.email
                                 })
                                     .then(respose => {
-
+                                        setName(values.user)
+                                        setEmail(values.email)
                                         setShowAlert(true);
                                         setLoand(false)
                                     })

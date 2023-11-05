@@ -16,7 +16,8 @@ import {
     ConteinerUpdateUser,
     UpdateUser,
     AvatarUserHome,
-    ConteinerAvatar
+    ConteinerAvatar,
+    Email
 } from "./style";
 
 import { SimpleLineIcons } from '@expo/vector-icons';
@@ -85,6 +86,7 @@ export default function Home() {
                     <ConteinerAvatar >
                         <AvatarUserHome source={{ uri: user.user?.avatar }} />
                         <TitleHome> Olá! {user.user?.name}</TitleHome>
+                        <Email>{user.user?.email}</Email>
                     </ConteinerAvatar>
                 </HeaderHome>
 

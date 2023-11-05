@@ -66,9 +66,16 @@ export const TitleHome = styled.Text`
   color: ${Theme.colors.white100};
   padding: 10px;
 `;
+export const Email = styled.Text`
+  font-size: 20px;
+  height: 55px;
+  text-align: center;
+  color: ${Theme.colors.white100};
+`;
 export const AvatarUserHome = styled.Image`
-  height: 100px;
-  width: 100px;
+  margin-top: 25px;
+  height: 80px;
+  width: 80px;
   border-radius: 50px;
 `;
 

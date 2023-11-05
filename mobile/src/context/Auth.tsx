@@ -28,6 +28,9 @@ export interface AuthContextDataProps {
   singnOut: () => void;
   setSaldo: (newSaldo: number) => void
   setAvatar: (avatar: string) => void
+  setName: (name: string) => void;
+  setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
 }
 
 interface AuthContextProviderProps {
@@ -93,6 +96,39 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
     }
   }
+  function setName(name: string) {
+    try {
+      const userData = user;
+      userData.user.name = name;
+      AsyncStorage.setItem('userData', JSON.stringify(userData));
+
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+  function setEmail(email: string) {
+    try {
+      const userData = user;
+      userData.user.email = email;
+      AsyncStorage.setItem('userData', JSON.stringify(userData));
+
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+  function setPassword(password: string) {
+    try {
+      const userData = user;
+      userData.user.password = password;
+      AsyncStorage.setItem('userData', JSON.stringify(userData));
+
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
   function singnOut() {
 
     AsyncStorage.removeItem('userData').catch((error) => {
@@ -124,6 +160,9 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         singnIn,
         setSaldo,
         setAvatar,
+        setEmail,
+        setName,
+        setPassword
       }}
     >
 

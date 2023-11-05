@@ -38,9 +38,7 @@ export default function Payment() {
 
                 onSubmit={values => {
 
-
                     if (values) {
-
 
                         createPrefence(values.value)
 

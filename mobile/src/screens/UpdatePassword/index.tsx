@@ -20,7 +20,7 @@ interface MyFormValues {
 
 
 export default function UpdatePassWord() {
-    const { user } = useContext(AuthContext)
+    const { user, setPassword } = useContext(AuthContext)
     const validationSchema = Yup.object().shape({
 
         currentPassword: Yup.string()
@@ -89,7 +89,7 @@ export default function UpdatePassWord() {
                                     .then(respose => {
                                         setLoand(false)
                                         setShowAlert(true);
-
+                                        setPassword(values.password)
                                     })
                                     .catch(erro => {
                                         console.log(erro);
