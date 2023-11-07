@@ -225,10 +225,12 @@ export interface PaymentContextDataProps {
   createPayment: CreatePayment;
   resposePaymment: ResposePayment;
   createPrefence: (valor: string) => void;
+  load: boolean;
 }
 
 interface PaymentContextProviderProps {
   children: ReactNode;
+
 
 }
 
@@ -239,7 +241,7 @@ export const AuthContextPayment = createContext({} as PaymentContextDataProps);
 export function PaymentContextProvider({ children }: PaymentContextProviderProps) {
   const [createPayment, setCreatePaymet] = useState<CreatePayment>({} as CreatePayment);
   const [resposePaymment, setResposePaymment] = useState<ResposePayment>({} as ResposePayment);
-
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     async function loadStorageDataPayment() {
@@ -266,6 +268,7 @@ export function PaymentContextProvider({ children }: PaymentContextProviderProps
 
 
   async function createPrefence(valor: string) {
+    setLoad(true)
     if (valor) {
       function removeMaskedNumber(input: string) {
 
@@ -295,6 +298,7 @@ export function PaymentContextProvider({ children }: PaymentContextProviderProps
         .then(respose => {
           const { init_point } = respose.data
           console.log(init_point);
+          setLoad(false)
           openBrowserAsync(init_point)
         })
         .catch(erro => {
@@ -309,8 +313,8 @@ export function PaymentContextProvider({ children }: PaymentContextProviderProps
       value={{
         createPayment,
         resposePaymment,
-        createPrefence
-
+        createPrefence,
+        load
       }}
     >
       {children}

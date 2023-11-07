@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { ButtomPayment, Conteiner, Label, TextButton, TextErro, TextTitle } from "./styles";
 import { Theme } from "../../../Thema";
 import { AuthContextPayment } from "../../context/payments";
+import { ActivityIndicator } from "react-native-paper";
 
 
 
@@ -18,7 +19,7 @@ interface MyFormValues {
 
 
 export default function Payment() {
-    const { createPrefence } = useContext(AuthContextPayment)
+    const { createPrefence, load } = useContext(AuthContextPayment)
 
     const validationSchema = Yup.object().shape({
         value: Yup.string()
@@ -81,7 +82,12 @@ export default function Payment() {
                         />
                         {errors.value ? (<TextErro>{errors.value}</TextErro>) : (<></>)}
                         <ButtomPayment onPress={() => handleSubmit()}>
-                            <TextButton>Depositar</TextButton>
+                            {load === true ?
+                                <ActivityIndicator size={30} color={Theme.colors.white100} />
+                                :
+                                <TextButton>Depositar</TextButton>
+                            }
+
                         </ButtomPayment>
 
                     </Conteiner>
