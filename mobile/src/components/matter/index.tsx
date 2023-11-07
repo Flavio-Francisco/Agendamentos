@@ -18,6 +18,8 @@ export function Matter(props: Matte) {
 
   const { filterTeacher, getTeacher } = useContext(AuthContextTeacher);
   const [teacherMatter, setTeacherMatter] = useState('')
+  console.log("esse é os profs", filterTeacher);
+
   var nomeMateria;
 
   switch (props.id_matter) {
@@ -62,6 +64,8 @@ export function Matter(props: Matte) {
     const filteredTeachers = filterTeacher.filter(item => item.id === props.id_prof);
 
     if (filteredTeachers.length > 0) {
+
+
       const teacherNames = filteredTeachers.map(item => item.name);
 
       setTeacherMatter(teacherNames.join(''));
@@ -69,6 +73,8 @@ export function Matter(props: Matte) {
 
 
       setTeacherMatter('Nenhum professor encontrado');
+
+
     }
   }, [props.id_prof, filterTeacher]);
   return (

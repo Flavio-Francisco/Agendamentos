@@ -43,7 +43,7 @@ console.warn = () => { };
 
 export default function Home() {
 
-    const { matterfindAll } = useContext(AuthContextTeacher)
+    const { matterfindAll, getTeacher } = useContext(AuthContextTeacher)
     const { user, singnOut } = useContext(AuthContext)
     const [modalVisible, setModalVisible] = useState(false)
 
@@ -66,6 +66,7 @@ export default function Home() {
     // atualizando dados quando voltar para home
     useFocusEffect(
         React.useCallback(() => {
+            getTeacher()
             user
             matterfindAll();
             console.log("Saldo da home: ", user.user?.saldo);

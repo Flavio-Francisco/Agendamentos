@@ -162,7 +162,7 @@ export function AuthContextProviderTeacher({ children }: AuthContextProviderProp
     await api(`/get`)
       .then(respose => {
         setFilterTeacher(respose.data)
-        console.log(filterTeacher);
+        console.log("esse é o filter data", filterTeacher);
 
       })
 
