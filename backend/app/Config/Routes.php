@@ -41,10 +41,10 @@ $routes->get('/uniqueUser/(:any)','User::uniqueUser/$1'/*,['filter' => 'jwt']*/)
 
 //horarios disponiveis
 
-$routes->post('/createtime/(:any)','TimesAvailable::createTime/$1',['filter' => 'jwt']);
+$routes->post('/createtime/(:any)','TimesAvailable::createTime/$1'/*,['filter' => 'jwt']*/);
 $routes->get('/getDate/(:any)','TimesAvailable::getDate/$1');
-$routes->delete('/deleteDate/(:any)','TimesAvailable::deleteDate/$1',['filter' => 'jwt']);
-$routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1',['filter' => 'jwt']);
+$routes->delete('/deleteDate/(:any)','TimesAvailable::deleteDate/$1'/*,['filter' => 'jwt']*/);
+$routes->patch('/updateDate/(:any)','TimesAvailable::updateDate/$1'/*,['filter' => 'jwt']*/);
 
 //login
 
